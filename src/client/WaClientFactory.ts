@@ -985,7 +985,10 @@ export function buildWaClientDependencies(input: {
         appStateMutations,
         buildMessageContent: async (content) =>
             buildMediaMessageContent(mediaMessageBuildOptions, content),
-        publishStatusMessage: (input) => messageDispatch.publishStatusMessage(input)
+        publishStatusMessage: (input) => messageDispatch.publishStatusMessage(input),
+        messageStore: sessionStore.messages,
+        sendMessage: (to, content, options) => messageDispatch.sendMessage(to, content, options),
+        downloadBytes: (source, options) => messageCoordinator.downloadBytes(source, options ?? {})
     })
 
     const broadcastListCoordinator = createBroadcastListCoordinator({

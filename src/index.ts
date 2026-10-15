@@ -1,5 +1,31 @@
 export { WaClient } from '@client'
 export { defineWaClientPlugin } from '@client/plugins'
+export { WA_STATUS_MEDIA_KINDS, classifyStatusMedia, listStatuses } from '@client/status-query'
+export type { WaStatusEntry, WaStatusListOptions, WaStatusMediaKind } from '@client/status-query'
+export { WA_STATUS_LIKE_EMOJI } from '@client/coordinators/status-interactions'
+export type {
+    WaStatusApplyInput,
+    WaStatusApplyResult,
+    WaStatusDownloadInput,
+    WaStatusDownloaded,
+    WaStatusInteractions,
+    WaStatusReactInput
+} from '@client/coordinators/status-interactions'
+export {
+    createAdminAllowList,
+    evaluateGroupLink,
+    findFirstLink,
+    getMessageText,
+    WA_LINK_KINDS
+} from '@client/link-filter'
+export type { WaLinkFilterResult, WaLinkKind, WaLinkMatch } from '@client/link-filter'
+export { parseCallLogRecord, WA_CALL_LOG_RESULTS, WA_CALL_LOG_TYPES } from '@client/events/call-log'
+export type {
+    WaCallLogParticipant,
+    WaCallLogRecord,
+    WaCallLogResult,
+    WaCallLogType
+} from '@client/events/call-log'
 export type { WaClientDependencies } from '@client/WaClientFactory'
 export type {
     WaClientEventMap,

@@ -2,6 +2,9 @@ import type {
     WaAppStateMutationCoordinator,
     WaSetStatusPrivacyInput
 } from '@client/coordinators/WaAppStateMutationCoordinator'
+import type { WaStatusInteractions } from '@client/coordinators/status-interactions'
+import { createStatusInteractions } from '@client/coordinators/status-interactions'
+import type { WaMessageStore } from '@store/contracts/message.store'
 import type { WaSendMessageOptions } from '@client/types'
 import type {
     WaMessageBuildResult,
@@ -21,6 +24,17 @@ export interface WaStatusCoordinatorOptions {
         readonly statusSetting?: WaStatusDistributionSetting
         readonly options?: WaSendMessageOptions
     }) => Promise<WaMessagePublishResult>
+    /** Required for the reaction / apply / download half of the surface. */
+    readonly messageStore?: WaMessageStore
+    readonly sendMessage?: (
+        to: string,
+        content: WaSendMessageContent,
+        options?: WaSendMessageOptions
+    ) => Promise<WaMessagePublishResult>
+    readonly downloadBytes?: (
+        source: { readonly message: Proto.IMessage },
+        options?: { readonly maxBytes?: number }
+    ) => Promise<Uint8Array>
 }
 
 export interface WaSendStatusInput {
@@ -34,7 +48,7 @@ export interface WaSendStatusInput {
  * Coordinates the status-broadcast surface: distribution privacy, per-contact
  * mute, send, and revoke. Accessed via {@link WaClient.status}.
  */
-export interface WaStatusCoordinator {
+export interface WaStatusCore {
     /** Updates the account-wide status privacy setting (see {@link WaSetStatusPrivacyInput}). */
     readonly setPrivacy: (input: WaSetStatusPrivacyInput) => Promise<void>
     /** Mutes or unmutes a specific contact's status broadcasts. */
@@ -50,9 +64,15 @@ export interface WaStatusCoordinator {
     }) => Promise<WaMessagePublishResult>
 }
 
+/**
+ * The full `client.status` surface: the send/revoke core plus the reaction,
+ * bulk-apply, and download operations from `status-interactions`.
+ */
+export type WaStatusCoordinator = WaStatusCore & WaStatusInteractions
+
 /** Builds a {@link WaStatusCoordinator} from its dependencies. */
 export function createStatusCoordinator(options: WaStatusCoordinatorOptions): WaStatusCoordinator {
-    return {
+    const core: WaStatusCore = {
         setPrivacy: (input) => options.appStateMutations.setStatusPrivacy(input),
         setUserMuted: (jid, muted) => options.appStateMutations.setUserStatusMute(jid, muted),
         send: async (input) => {
@@ -93,5 +113,18 @@ export function createStatusCoordinator(options: WaStatusCoordinatorOptions): Wa
                 options: input.options
             })
         }
+    }
+
+    if (!options.messageStore || !options.sendMessage || !options.downloadBytes) {
+        return core
+    }
+
+    return {
+        ...core,
+        ...createStatusInteractions({
+            messageStore: options.messageStore,
+            sendMessage: options.sendMessage,
+            downloadBytes: options.downloadBytes
+        })
     }
 }
