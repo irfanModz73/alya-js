@@ -8,13 +8,14 @@
 
 <p align="center">
   <strong>High-performance TypeScript implementation of the WhatsApp Web protocol.</strong><br />
-  Built for high-scalability workloads, multi-session operation, and full user configurability.
+  Built for high-scalability workloads, multi-session operation, and full user configurability.<br />
+  <em>Fork of <a href="https://github.com/vinikjkkj/zapo">zapo-js</a> with bot-focused additions.</em>
 </p>
 
 <p align="center">
   <a href="https://www.npmjs.com/package/alya-js"><img alt="npm version" src="https://img.shields.io/npm/v/alya-js?color=CB3837" /></a>
   <a href="https://www.npmjs.com/package/alya-js"><img alt="npm package size" src="https://img.shields.io/npm/unpacked-size/alya-js?label=package%20size&color=2F855A" /></a>
-  <a href="https://github.com/sponsors/vinikjkkj"><img alt="sponsor" src="https://img.shields.io/badge/sponsor-vinikjkkj-EA4AAA?logo=githubsponsors&logoColor=white" /></a>
+  <a href="https://github.com/irfanModz73/alya-js"><img alt="fork" src="https://img.shields.io/badge/fork%20of-zapo--js-3178C6" /></a>
   <img alt="node version" src="https://img.shields.io/badge/node-%3E%3D20.9.0-339933" />
   <img alt="language" src="https://img.shields.io/badge/language-TypeScript-3178C6" />
   <img alt="focus" src="https://img.shields.io/badge/focus-high--scale%20%2B%20multi--session-0A7EA4" />
@@ -27,6 +28,93 @@
 </p>
 
 ---
+
+## Fork notice
+
+**`alya-js` is a fork of [`zapo-js`](https://github.com/vinikjkkj/zapo)** by
+[vinikjkkj](https://github.com/vinikjkkj), the original author and copyright
+holder.
+
+- Upstream: <https://github.com/vinikjkkj/zapo> — upstream docs at
+  <https://zapo.to/>
+- License: MIT, unchanged. The original copyright notice in [`LICENSE`](LICENSE)
+  is preserved as MIT requires.
+- Upstream is tracked as the `upstream` remote, so this fork can pull in
+  upstream changes: `git fetch upstream && git merge upstream/master`.
+- Upstream `CHANGELOG.md` files and the original documentation links are left
+  as-is; they describe releases published under the `zapo-js` name.
+
+Everything below the fork notice describes `alya-js`. Features not listed in
+[What this fork adds](#what-this-fork-adds) come from upstream.
+
+## What this fork adds
+
+Everything here is either a wrapper over an existing upstream API or a
+read-only parser. **None of it introduce a new protocol stanza**, except the
+newsletter status port, which was carried over from observed wire traffic.
+
+### Messaging
+
+| Feature | Usage |
+| --- | --- |
+| Skip self-sync on a send | `client.message.send(jid, content, { noSelfSync: true })` — drops this account's own devices from the fanout, so bot traffic does not mirror back into the paired phones. Works on 1:1 and group sends. |
+| Delete a group status | `client.group.deleteStatus({ groupJid, messageId, participant? })` — revokes a text, image, video, or audio status posted in a group. |
+| Send the blocklist | `client.privacy.sendBlockList({ to, options })` — fetches the live blocklist and publishes it as a plain-text message. |
+
+### Status interactions
+
+| Feature | Usage |
+| --- | --- |
+| React to a status | `client.status.react({ statusId, owner, emoji })` |
+| Like a status | `client.status.like({ statusId, owner })` — a status like is a heart reaction; the wire format has no separate like. |
+| Bulk apply | `client.status.apply({ targets, action: 'react' \| 'like', emoji, intervalMs })` — reacts across every status an owner published, counting failures instead of throwing on the first one. |
+| Download a contact's statuses | `client.status.download({ chatJid, owner?, kinds?, maxBytes? })` — media only; text statuses carry nothing to download. |
+| Download a group's statuses | `client.status.downloadGroup(groupJid)` |
+
+Statuses are read from the message store: contact statuses live in the
+`status@broadcast` thread with the owner on `participantJid`, group statuses
+live in the group thread. **Only statuses this client actually observed are
+visible** — anything missed while disconnected was never persisted.
+
+### Group moderation
+
+| Feature | Usage |
+| --- | --- |
+| Link filter | `evaluateGroupLink(event, { isAllowedSender, deleteMessage, kinds })` — classifies and removes promotional links (TikTok, Instagram, group invites, WhatsApp channels, Telegram, or any generic URL) from non-admin senders. Admins, super-admins, and the group owner pass. Pure decision function; the two effects are injected ports. |
+| Allow list helper | `createAdminAllowList(loadMetadata)` — builds the `isAllowedSender` check from a group-metadata lookup. |
+
+### Newsletter channel status
+
+The `<status>` stanza family for newsletter channels, ported from a Baileys
+module: publishing a text/media channel status, the `question` /
+`question_response` / `question_reshare` interactions, reacting to a status,
+admin revoke, and the `<status_updates>` query with its parsers.
+
+```ts
+const { id, serverId } = await client.newsletter.sendStatus({
+    jid: newsletterJid,
+    content: { image: { media: './cover.jpg', mimetype: 'image/jpeg' } },
+    mediaType: 'image',
+    resolveServerId: true
+})
+await client.newsletter.reactToStatus({ jid: newsletterJid, messageId: id, parentServerId: serverId, reaction: '❤️' })
+```
+
+A channel status address is a **server id**, not a message id. The publish ack
+carries only `class`, `id`, and `t`; the server id arrives in a separate
+`<status>` echo, so `sendStatus` only returns one when `resolveServerId` is
+set **and** a `waitForServerId` port is supplied.
+
+### Call history
+
+`parseCallLogRecord(record)` parses a `CallLogRecord` out of an app-state
+`callLogAction` patch. Outcomes and call types decode to readable strings
+(`'MISSED'`, `'VOICE_CHAT'`), and `int64` fields go through `longToNumber`
+because they decode to `Long` objects that the number coercion helpers reject.
+
+> This parser is read-only. It does **not** make `client.voip` expose a call
+> history: `@alya-js/voip` still tracks live calls only, and a call is dropped
+> from its in-memory set as soon as it ends.
 
 ## Stability Notice
 
