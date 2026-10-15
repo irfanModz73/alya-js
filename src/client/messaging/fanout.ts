@@ -6,13 +6,26 @@ import type { SignalDeviceSyncApi } from '@signal/api/SignalDeviceSyncApi'
 import { toError } from '@util/primitives'
 
 export type DeviceFanoutResolver = {
+    /**
+     * Device JIDs an outgoing direct message is encrypted to. With
+     * `noSelfSync`, none of this account's own devices are included, so the
+     * message is delivered to the recipient without landing in the paired
+     * phones' own chat.
+     */
     resolveDirectFanoutDeviceJids(
         recipientJid: string,
-        selfDeviceJid: string
+        selfDeviceJid: string,
+        noSelfSync?: boolean
     ): Promise<readonly string[]>
 
+    /**
+     * Device JIDs an outgoing group message is encrypted to. Always drops the
+     * account's base JIDs; `noSelfSync` additionally drops its secondary
+     * devices, which the participant scan would otherwise carry through.
+     */
     resolveGroupParticipantDeviceJids(
-        participantUserJids: readonly string[]
+        participantUserJids: readonly string[],
+        noSelfSync?: boolean
     ): Promise<readonly string[]>
 
     resolveOwnPeerDeviceJids(): Promise<readonly string[]>
@@ -34,7 +47,8 @@ export function createDeviceFanoutResolver(options: {
 
     const resolveDirectFanoutDeviceJids = async (
         recipientJid: string,
-        selfDeviceJidForRecipient: string
+        selfDeviceJidForRecipient: string,
+        noSelfSync?: boolean
     ): Promise<readonly string[]> => {
         const recipientUserJid = toUserJid(recipientJid)
         const meUserJid = toUserJid(selfDeviceJidForRecipient)
@@ -59,14 +73,20 @@ export function createDeviceFanoutResolver(options: {
                 }
             }
 
-            const meDevices = byUser.get(meUserJid) ?? []
-            const normalizedMeJid = normalizeDeviceJid(selfDeviceJidForRecipient)
-            for (let index = 0; index < meDevices.length; index += 1) {
-                const deviceJid = meDevices[index]
-                if (normalizeDeviceJid(deviceJid) === normalizedMeJid) {
-                    continue
+            // Without this the account's own devices join the fanout, and every
+            // outgoing bot message shows up on the paired phones as a chat the
+            // user never started. Dropping them here is enough: the stanza is
+            // still acked for the recipient, this device only stops mirroring.
+            if (!noSelfSync) {
+                const meDevices = byUser.get(meUserJid) ?? []
+                const normalizedMeJid = normalizeDeviceJid(selfDeviceJidForRecipient)
+                for (let index = 0; index < meDevices.length; index += 1) {
+                    const deviceJid = meDevices[index]
+                    if (normalizeDeviceJid(deviceJid) === normalizedMeJid) {
+                        continue
+                    }
+                    fanout.add(deviceJid)
                 }
-                fanout.add(deviceJid)
             }
 
             return [...fanout]
@@ -79,8 +99,47 @@ export function createDeviceFanoutResolver(options: {
         }
     }
 
+    /**
+     * Every device JID this account owns, in both addressing forms. Used by
+     * the `noSelfSync` group path, where the participant scan only learns the
+     * account's base JID.
+     */
+    const resolveOwnDeviceJids = async (
+        meJid: string,
+        meLid: string | null | undefined
+    ): Promise<readonly string[]> => {
+        const ownUserJids = new Set<string>()
+        ownUserJids.add(toUserJid(meJid))
+        if (meLid && meLid.includes('@')) {
+            ownUserJids.add(toUserJid(meLid))
+        }
+        const deviceJids = new Set<string>()
+        try {
+            const synced = await signalDeviceSync.syncDeviceList([...ownUserJids])
+            for (const entry of synced) {
+                for (const deviceJid of entry.deviceJids) {
+                    try {
+                        deviceJids.add(normalizeDeviceJid(deviceJid))
+                    } catch (error) {
+                        logger.trace('ignoring malformed own device jid', {
+                            deviceJid,
+                            message: toError(error).message
+                        })
+                    }
+                }
+            }
+        } catch (error) {
+            logger.debug('own device sync failed, noSelfSync group fanout keeps base jid only', {
+                message: toError(error).message
+            })
+            return []
+        }
+        return [...deviceJids]
+    }
+
     const resolveGroupParticipantDeviceJidsInternal = async (
-        participantUserJids: readonly string[]
+        participantUserJids: readonly string[],
+        noSelfSync?: boolean
     ): Promise<readonly string[]> => {
         const meDeviceJids = new Set<string>()
         const credentials = getCurrentCredentials()
@@ -105,6 +164,17 @@ export function createDeviceFanoutResolver(options: {
                     meLid,
                     message: toError(error).message
                 })
+            }
+        }
+
+        // The two entries above are the account's base JIDs only, so the
+        // secondary devices (`111:1@...`) survive the membership check below.
+        // A `noSelfSync` send has to drop those too, otherwise the paired
+        // phones still receive the message inside the group.
+        if (noSelfSync && meJid) {
+            const ownDevices = await resolveOwnDeviceJids(meJid, meLid)
+            for (const deviceJid of ownDevices) {
+                meDeviceJids.add(deviceJid)
             }
         }
 
@@ -238,10 +308,13 @@ export function createDeviceFanoutResolver(options: {
     }
 
     const resolveGroupParticipantDeviceJids = (
-        participantUserJids: readonly string[]
+        participantUserJids: readonly string[],
+        noSelfSync?: boolean
     ): Promise<readonly string[]> =>
-        dedup.run(`group:${participantUserJids.join(',')}`, () =>
-            resolveGroupParticipantDeviceJidsInternal(participantUserJids)
+        // The flag is part of the key: a noSelfSync resolution must never join
+        // an in-flight full fanout, or the send would leak to own devices.
+        dedup.run(`group:${noSelfSync ? 'noself' : 'all'}:${participantUserJids.join(',')}`, () =>
+            resolveGroupParticipantDeviceJidsInternal(participantUserJids, noSelfSync)
         )
 
     return {

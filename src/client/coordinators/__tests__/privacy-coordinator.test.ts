@@ -1,7 +1,10 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 
-import { createPrivacyCoordinator } from '@client/coordinators/WaPrivacyCoordinator'
+import {
+    createPrivacyCoordinator,
+    formatBlocklist
+} from '@client/coordinators/WaPrivacyCoordinator'
 import { createNoopLogger } from '@infra/log/types'
 import { WA_DEFAULTS, WA_PRIVACY_CATEGORIES, WA_PRIVACY_TAGS } from '@protocol/constants'
 import type { SignalUserJidPair } from '@signal/api/SignalDeviceSyncApi'
@@ -669,4 +672,84 @@ test('disallowed-list username identifier is gated by its ab prop', async () => 
     const gated = await runWithGate(false)
     assert.equal(gated.attrs.username, undefined)
     assert.equal(gated.attrs.jid, '88880000@lid')
+})
+
+test('privacy coordinator sends the blocklist as a text message', async () => {
+    const sent: Array<{
+        readonly to: string
+        readonly content: string
+        readonly options: unknown
+    }> = []
+
+    const coordinator = createPrivacyCoordinator({
+        ...createBlocklistDeps(),
+        queryWithContext: async (context) => {
+            if (context === 'privacy.getBlocklist') {
+                return createIqResult([
+                    {
+                        tag: 'list',
+                        attrs: {},
+                        content: [
+                            { tag: 'item', attrs: { jid: '62811@s.whatsapp.net' } },
+                            { tag: 'item', attrs: { jid: '999@lid', username: 'joao' } }
+                        ]
+                    }
+                ])
+            }
+            return createIqResult()
+        },
+        sendMessage: async (to, content, options) => {
+            sent.push({ to, content, options })
+            return { id: 'msg-1', attempts: 1 } as never
+        }
+    })
+
+    await coordinator.sendBlockList({
+        to: '62822@s.whatsapp.net',
+        options: { noSelfSync: true }
+    })
+
+    assert.equal(sent.length, 1)
+    assert.equal(sent[0].to, '62822@s.whatsapp.net')
+    assert.deepEqual(sent[0].options, { noSelfSync: true })
+    assert.equal(sent[0].content, 'Blocked contacts (2)\n\n1. +62811\n2. @joao')
+})
+
+test('privacy coordinator sendBlockList reports an empty blocklist', async () => {
+    const sent: string[] = []
+
+    const coordinator = createPrivacyCoordinator({
+        ...createBlocklistDeps(),
+        queryWithContext: async () => createIqResult([{ tag: 'list', attrs: {}, content: [] }]),
+        sendMessage: async (_to, content) => {
+            sent.push(content)
+            return { id: 'msg-2', attempts: 1 } as never
+        }
+    })
+
+    await coordinator.sendBlockList({ to: '62822@s.whatsapp.net', title: 'Diblokir' })
+
+    assert.deepEqual(sent, ['Diblokir\n\nNo blocked contacts.'])
+})
+
+test('privacy coordinator sendBlockList throws without a message publisher', async () => {
+    const coordinator = createPrivacyCoordinator({
+        ...createBlocklistDeps(),
+        queryWithContext: async () => createIqResult([{ tag: 'list', attrs: {}, content: [] }])
+    })
+
+    await assert.rejects(
+        () => coordinator.sendBlockList({ to: '62822@s.whatsapp.net' }),
+        /requires a message publisher/
+    )
+})
+
+test('formatBlocklist keeps an unmappable lid jid instead of a dialable number', () => {
+    assert.equal(
+        formatBlocklist({
+            jids: ['555@lid'],
+            entries: [{ jid: '555@lid' }]
+        }),
+        'Blocked contacts (1)\n\n1. 555@lid'
+    )
 })

@@ -144,6 +144,7 @@ export type {
     WaCommunitySubGroup,
     WaCommunitySubGroupResult,
     WaCommunitySubGroupsResult,
+    WaDeleteGroupStatusInput,
     WaGroupCoordinator,
     WaGroupCreateOptions,
     WaGroupMetadata,
@@ -202,7 +203,8 @@ export type {
     WaPrivacyAccountSyncResult,
     WaPrivacyCoordinator,
     WaPrivacyDisallowedListInput,
-    WaPrivacyDisallowedListUpdate
+    WaPrivacyDisallowedListUpdate,
+    WaSendBlockListInput
 } from '@client/coordinators/WaPrivacyCoordinator'
 export type {
     WaBlocklistResult,

@@ -934,7 +934,8 @@ export class WaMessageDispatchCoordinator {
                 input.groupJid,
                 senderKeyId,
                 distributionMessage,
-                input.recipients
+                input.recipients,
+                input.sendOptions.noSelfSync
             )
         let shouldAttachDeviceIdentity = false
         for (let i = 0; i < distributionParticipants.length; i += 1) {
@@ -1123,8 +1124,10 @@ export class WaMessageDispatchCoordinator {
                 })
             }
         )
-        const fanoutDeviceJids =
-            await this.deps.fanoutResolver.resolveGroupParticipantDeviceJids(targetUserJids)
+        const fanoutDeviceJids = await this.deps.fanoutResolver.resolveGroupParticipantDeviceJids(
+            targetUserJids,
+            sendOptions.noSelfSync
+        )
         if (fanoutDeviceJids.length === 0) {
             throw new Error('group direct send resolved no target devices')
         }
@@ -1353,13 +1356,16 @@ export class WaMessageDispatchCoordinator {
             keyId: senderKeyId
         } = await this.deps.senderKeyManager.prepareGroupEncryption(groupJid, sender, plaintext)
         const distributionData = await this.distributionDedup.run(
-            `dist:${groupJid}:${senderKeyId}`,
+            // The flag is part of the key: a noSelfSync resolution must never
+            // reuse a fanout that still carries this account's own devices.
+            `dist:${sendOptions.noSelfSync ? 'noself' : 'all'}:${groupJid}:${senderKeyId}`,
             () =>
                 this.encryptGroupDistributionParticipants(
                     groupJid,
                     senderKeyId,
                     senderKeyDistributionMessage,
-                    participantUserJids
+                    participantUserJids,
+                    sendOptions.noSelfSync
                 )
         )
         const { fanoutDeviceJids, distributionParticipants } = distributionData
@@ -1555,7 +1561,8 @@ export class WaMessageDispatchCoordinator {
         groupJid: string,
         senderKeyId: number,
         senderKeyDistributionMessage: Proto.Message.ISenderKeyDistributionMessage,
-        participantUserJids: readonly string[]
+        participantUserJids: readonly string[],
+        noSelfSync?: boolean
     ): Promise<{
         readonly fanoutDeviceJids: readonly string[]
         readonly distributionParticipants: readonly {
@@ -1565,8 +1572,10 @@ export class WaMessageDispatchCoordinator {
             readonly ciphertext: Uint8Array
         }[]
     }> {
-        const fanoutDeviceJids =
-            await this.deps.fanoutResolver.resolveGroupParticipantDeviceJids(participantUserJids)
+        const fanoutDeviceJids = await this.deps.fanoutResolver.resolveGroupParticipantDeviceJids(
+            participantUserJids,
+            noSelfSync
+        )
         if (fanoutDeviceJids.length === 0) {
             return {
                 fanoutDeviceJids,
@@ -1733,7 +1742,8 @@ export class WaMessageDispatchCoordinator {
         )
         const deviceJids = await this.deps.fanoutResolver.resolveDirectFanoutDeviceJids(
             recipientJid,
-            selfDeviceJidForRecipient
+            selfDeviceJidForRecipient,
+            sendOptions.noSelfSync
         )
         const targets: {
             readonly jid: string

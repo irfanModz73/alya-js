@@ -464,6 +464,21 @@ export interface WaSendMessageOptions extends WaMessagePublishOptions {
      * `addressing_mode`) – use with care: bad overrides can break the send.
      */
     readonly additionalAttributes?: Readonly<Record<string, string>>
+    /**
+     * Drop this account's own devices from the send fanout, so the message
+     * reaches the recipient without also appearing in the paired phones' chats.
+     * Intended for bot traffic that the account owner should not see mirrored
+     * back.
+     *
+     * Only affects 1:1 sends. Group fanout already excludes every device of
+     * this account, so the flag is a no-op there. The recipient is unaffected:
+     * their devices are always included.
+     *
+     * The sending device still receives `message_send` for the published
+     * stanza, and retries on decrypt failure go through the normal
+     * {@link WaRetryCoordinator} path.
+     */
+    readonly noSelfSync?: boolean
 }
 
 export interface WaClearChatOptions {

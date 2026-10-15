@@ -1,4 +1,6 @@
 import { parseParticipants as parseGroupEventParticipants } from '@client/events/group'
+import type { WaSendMessageOptions } from '@client/types'
+import type { WaMessagePublishResult } from '@message/types'
 import type { WaMexOperationResponses } from '@mex'
 import { WA_DEFAULTS } from '@protocol/defaults'
 import { WA_GROUP_PARTICIPANT_TYPES, type WaGroupSetting } from '@protocol/group'
@@ -234,6 +236,24 @@ interface WaGroupCoordinatorOptions {
         contextData?: Readonly<Record<string, unknown>>
     ) => Promise<BinaryNode>
     readonly mexSocket?: WaMexQuerySocket
+    /**
+     * Publishes the revoke stanza for {@link WaGroupCoordinator.deleteStatus}.
+     * Injected rather than pulled from a module import so the coordinator keeps
+     * depending on nothing above the transport layer.
+     */
+    readonly publishRevoke?: (input: WaDeleteGroupStatusInput) => Promise<WaMessagePublishResult>
+}
+
+/** Identifies the group status to delete. */
+export interface WaDeleteGroupStatusInput {
+    /** The group the status was posted in. */
+    readonly groupJid: string
+    /** Message id of the status, as delivered in the `message` event. */
+    readonly messageId: string
+    /** Author of the status, required only when it is not the current account. */
+    readonly participant?: string
+    /** Send options, for example `noSelfSync` to keep the revoke off paired phones. */
+    readonly options?: WaSendMessageOptions
 }
 
 /**
@@ -358,6 +378,20 @@ export interface WaGroupCoordinator {
      * stops working. Returns the freshly-issued code.
      */
     readonly revokeInvite: (groupJid: string) => Promise<WaRevokeInviteResult>
+    /**
+     * Deletes a status (text, image, video, or audio) the current account
+     * posted to `groupJid`. Works for every status media kind because the
+     * revoke is addressed by message id, not by content type.
+     *
+     * `messageId` is the id from the `message` event that carried the status.
+     * `participant` is only needed when revoking a status another member
+     * posted and the account holds the admin rights to remove it.
+     *
+     * @throws when the group coordinator was built without message publishing
+     * (only possible for a hand-constructed coordinator, never for
+     * {@link WaClient}).
+     */
+    readonly deleteStatus: (input: WaDeleteGroupStatusInput) => Promise<WaMessagePublishResult>
     /**
      * Joins a group using its invite `code` (the path segment of a
      * `chat.whatsapp.com/<code>` URL). Throws if the code is expired,
@@ -809,7 +843,7 @@ function parseSubGroupSuggestionsMexResponse(
 
 /** Builds a {@link WaGroupCoordinator} backed by the given IQ query function and optional MEX socket. */
 export function createGroupCoordinator(options: WaGroupCoordinatorOptions): WaGroupCoordinator {
-    const { queryWithContext, mexSocket } = options
+    const { queryWithContext, mexSocket, publishRevoke } = options
 
     const changeParticipants = async (
         action: WaGroupParticipantChangeAction,
@@ -1034,6 +1068,13 @@ export function createGroupCoordinator(options: WaGroupCoordinatorOptions): WaGr
             }
             affectedParticipants.length = affectedCount
             return { code, affectedParticipants }
+        },
+
+        deleteStatus: async (input) => {
+            if (!publishRevoke) {
+                throw new Error('group.deleteStatus requires a message publisher')
+            }
+            return publishRevoke(input)
         },
 
         joinGroupViaInvite: async (code) => {

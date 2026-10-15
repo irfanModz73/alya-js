@@ -8,8 +8,10 @@ import {
     type WaPrivacyDisallowedListResult,
     type WaPrivacySettings
 } from '@client/events/privacy'
+import type { WaSendMessageOptions } from '@client/types'
 import type { Logger } from '@infra/log/types'
 import { PromiseDedup } from '@infra/perf/PromiseDedup'
+import type { WaMessagePublishResult } from '@message/types'
 import { WA_DEFAULTS } from '@protocol/defaults'
 import { isLidJid, isUserJid, normalizeRecipientJid } from '@protocol/jid'
 import { WA_IQ_TYPES, WA_NODE_TAGS } from '@protocol/nodes'
@@ -161,6 +163,34 @@ export interface WaPrivacyCoordinator {
      * migrated entry by phone jid is rejected by the server.
      */
     readonly unblockUser: (jid: string) => Promise<void>
+    /**
+     * Sends the current blocklist to a chat as a plain-text message. Reads
+     * {@link getBlocklist} first, so it always reflects the server state
+     * rather than what this client last wrote.
+     *
+     * Entries are rendered one per line with the username handle when the
+     * server identified one, and the bare phone number when the entry is a
+     * LID the contact store could not map back. An empty blocklist sends a
+     * single "no blocked contacts" line rather than nothing, so a recipient
+     * is never left guessing whether the send worked.
+     *
+     * Pass `options.noSelfSync` to keep the report off the paired phones.
+     *
+     * @throws when the coordinator was built without a message publisher
+     * (only possible for a hand-constructed coordinator, never for
+     * {@link WaClient}).
+     */
+    readonly sendBlockList: (input: WaSendBlockListInput) => Promise<WaMessagePublishResult>
+}
+
+/** Target and rendering options for {@link WaPrivacyCoordinator.sendBlockList}. */
+export interface WaSendBlockListInput {
+    /** Chat to send the report to. */
+    readonly to: string
+    /** Send options, forwarded to the underlying publish. */
+    readonly options?: WaSendMessageOptions
+    /** Overrides the default header line. */
+    readonly title?: string
 }
 
 /**
@@ -207,6 +237,15 @@ interface WaPrivacyCoordinatorOptions {
      * AB-prop, off by default - entries then fall back to `pn_jid`.
      */
     readonly isUsernamePrivacyListIdentifierEnabled: () => boolean
+    /**
+     * Publishes the formatted blocklist. Injected so the coordinator can
+     * compose a message without importing the dispatch layer.
+     */
+    readonly sendMessage?: (
+        to: string,
+        content: string,
+        options?: WaSendMessageOptions
+    ) => Promise<WaMessagePublishResult>
 }
 
 /**
@@ -311,6 +350,12 @@ export function createPrivacyCoordinator(
 ): WaPrivacyCoordinatorRuntime {
     const { queryWithContext } = options
     const usesLidAddressing = () => options.getSelfLid() !== null
+    const fetchBlocklist = async (): Promise<WaBlocklistResult> => {
+        const node = buildGetBlocklistIq()
+        const result = await queryWithContext('privacy.getBlocklist', node)
+        assertIqResult(result, 'privacy.getBlocklist')
+        return parseBlocklist(result)
+    }
     let refreshTimer: ReturnType<typeof setTimeout> | null = null
     let refreshStopped = false
     let activeRefresh: Promise<unknown> | null = null
@@ -460,12 +505,7 @@ export function createPrivacyCoordinator(
             }
         },
 
-        getBlocklist: async () => {
-            const node = buildGetBlocklistIq()
-            const result = await queryWithContext('privacy.getBlocklist', node)
-            assertIqResult(result, 'privacy.getBlocklist')
-            return parseBlocklist(result)
-        },
+        getBlocklist: async () => fetchBlocklist(),
 
         blockUser: async (jid) => {
             const target = await withContactIdentifiers(
@@ -487,6 +527,47 @@ export function createPrivacyCoordinator(
                 jid: unblockJid
             })
             assertIqResult(result, 'privacy.unblockUser')
+        },
+
+        sendBlockList: async (input) => {
+            if (!options.sendMessage) {
+                throw new Error('privacy.sendBlockList requires a message publisher')
+            }
+            const blocklist = await fetchBlocklist()
+            return options.sendMessage(
+                input.to,
+                formatBlocklist(blocklist, input.title),
+                input.options
+            )
         }
     }
+}
+
+/**
+ * Renders a blocklist as plain text. Kept pure so the formatting is testable
+ * without a transport.
+ */
+export function formatBlocklist(blocklist: WaBlocklistResult, title?: string): string {
+    const header = title ?? `Blocked contacts (${blocklist.entries.length})`
+    if (blocklist.entries.length === 0) {
+        return `${header}\n\nNo blocked contacts.`
+    }
+    const lines = new Array<string>(blocklist.entries.length)
+    for (let index = 0; index < blocklist.entries.length; index += 1) {
+        const entry = blocklist.entries[index]
+        const handle = entry.username ? `@${entry.username}` : blocklistPhoneNumber(entry.jid)
+        lines[index] = `${index + 1}. ${handle}`
+    }
+    return `${header}\n\n${lines.join('\n')}`
+}
+
+/**
+ * Best-effort human-readable label for a blocklist entry. A LID jid
+ * (`@lid` server) carries no dialable number, so it falls back to the raw
+ * jid rather than printing a truncated number that looks dialable.
+ */
+function blocklistPhoneNumber(jid: string): string {
+    if (jid.endsWith('@lid')) return jid
+    const [user] = jid.split('@')
+    return user ? `+${user}` : jid
 }

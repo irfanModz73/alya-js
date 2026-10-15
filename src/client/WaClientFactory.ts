@@ -657,7 +657,21 @@ export function buildWaClientDependencies(input: {
 
     const groupCoordinator = createGroupCoordinator({
         queryWithContext: runtime.queryWithContext,
-        mexSocket: { query: runtime.query }
+        mexSocket: { query: runtime.query },
+        publishRevoke: (input) =>
+            messageDispatch.sendMessage(
+                input.groupJid,
+                {
+                    type: 'revoke',
+                    target: {
+                        remoteJid: input.groupJid,
+                        fromMe: true,
+                        id: input.messageId,
+                        participant: input.participant
+                    }
+                },
+                input.options
+            )
     })
 
     const newsletterCoordinator = createNewsletterCoordinator({
@@ -683,7 +697,8 @@ export function buildWaClientDependencies(input: {
         queryWithContext: runtime.queryWithContext,
         resolveUserJidPair: (userJid) => signalDeviceSync.resolveUserJidPair(userJid),
         getSelfLid: () => getCurrentCredentials()?.meLid ?? null,
-        emitPrivacy: (event) => runtime.emitEvent('privacy', event)
+        emitPrivacy: (event) => runtime.emitEvent('privacy', event),
+        sendMessage: (to, content, options) => messageDispatch.sendMessage(to, content, options)
     })
 
     const businessCoordinator = createBusinessCoordinator({
