@@ -87,6 +87,7 @@ import { WaMediaTransferClient } from '@media/transfer/WaMediaTransferClient'
 import type { WaMediaConn } from '@media/types'
 import { createDefaultLinkPreviewFetcher } from '@message/addons/link-preview/fetcher'
 import { processNewsletterLiveUpdates } from '@message/kinds/newsletter'
+import { buildNewsletterMessageContent } from '@client/newsletter/content'
 import { handleIncomingMessageAck } from '@message/primitives/incoming'
 import {
     createMediaRetryRequester,
@@ -684,6 +685,22 @@ export function buildWaClientDependencies(input: {
         getMediaConn: () => getClientMediaConn(mediaMessageBuildOptions),
         linkPreviewResolver: createLinkPreviewResolver('newsletter'),
         getAbPropString: (name) => abPropsCoordinator.getConfigValue<string>(name),
+        buildStatusContent: async (content) => {
+            const built = await buildNewsletterMessageContent(
+                {
+                    logger,
+                    mediaTransfer,
+                    getMediaConn: () => getClientMediaConn(mediaMessageBuildOptions),
+                    linkPreviewResolver: createLinkPreviewResolver('newsletter')
+                },
+                content
+            )
+            const handle = built.upload?.handle ?? built.upload?.mediaId
+            return {
+                plaintext: built.plaintext,
+                ...(handle ? { mediaHandle: handle } : {})
+            }
+        },
         logger
     })
 

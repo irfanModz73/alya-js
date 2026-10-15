@@ -286,7 +286,7 @@ test('sendStatus encodes the message and wraps it in a status stanza', async () 
         query: async () => {
             throw new Error('not used')
         },
-        buildMessageContent: async () => ({ message: { conversation: 'hi' } }),
+        buildMessageContent: async () => ({ plaintext: proto.Message.encode({ conversation: 'hi' }).finish() }),
         generateStanzaId: async () => 'GEN1'
     })
 
@@ -307,7 +307,7 @@ test('sendStatus resolves the server id when asked and the waiter resolves', asy
         query: async () => {
             throw new Error('not used')
         },
-        buildMessageContent: async () => ({ message: { conversation: 'hi' } }),
+        buildMessageContent: async () => ({ plaintext: proto.Message.encode({ conversation: 'hi' }).finish() }),
         generateStanzaId: async () => 'GEN2',
         waitForServerId: async ({ jid, messageId }) => {
             waited = { jid, messageId }
@@ -330,7 +330,7 @@ test('reactToStatus and revokeStatus send their stanzas', async () => {
         query: async () => {
             throw new Error('not used')
         },
-        buildMessageContent: async () => ({ message: { conversation: 'hi' } }),
+        buildMessageContent: async () => ({ plaintext: proto.Message.encode({ conversation: 'hi' }).finish() }),
         generateStanzaId: async () => 'GEN3'
     })
 

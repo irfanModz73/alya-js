@@ -8,7 +8,6 @@ import {
 import type { WaNewsletterMexDeps } from '@client/newsletter/mex'
 import { createNewsletterStatusOps, type WaNewsletterStatusOps } from '@client/newsletter/status'
 import type { WaSendMessageContent } from '@message/types'
-import type { Proto } from '@proto'
 
 export { parseNewsletterMetadata } from '@client/newsletter/parse'
 
@@ -58,10 +57,14 @@ export type WaNewsletterCoordinator = WaNewsletterDiscoveryOps &
     WaNewsletterStatusOps
 
 export type WaNewsletterCoordinatorOptions = WaNewsletterMessagingDeps & {
-    /** Builds the outgoing message payload for a status publish. */
-    readonly buildStatusContent?: (
+    /**
+     * Builds and encodes a status payload. Required for `sendStatus`: a
+     * status stanza carries raw protobuf bytes, not a message object, so
+     * there is no sensible fallback without this.
+     */
+    readonly buildStatusContent: (
         content: WaSendMessageContent
-    ) => Promise<{ message: Proto.IMessage }>
+    ) => Promise<{ readonly plaintext: Uint8Array; readonly mediaHandle?: string }>
     readonly waitForServerId?: (input: {
         jid: string
         messageId: string
@@ -81,9 +84,7 @@ export function createNewsletterCoordinator(
         ...createNewsletterStatusOps({
             sendNode: options.sendNode,
             query: (node) => options.mexSocket.query(node),
-            buildMessageContent:
-                options.buildStatusContent ??
-                (() => Promise.resolve({ message: { conversation: '' } })),
+            buildMessageContent: options.buildStatusContent,
             generateStanzaId: options.generateStanzaId,
             ...(options.waitForServerId ? { waitForServerId: options.waitForServerId } : {})
         })

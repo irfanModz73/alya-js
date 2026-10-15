@@ -90,9 +90,15 @@ export interface WaNewsletterStatusReactInput {
 export interface WaNewsletterStatusDeps {
     readonly sendNode: (node: BinaryNode) => Promise<void>
     readonly query: (node: BinaryNode) => Promise<BinaryNode>
+    /**
+     * Builds and encodes the status payload. Returns the encoded
+     * `Proto.Message` bytes plus, for media, the handle the newsletter upload
+     * produced. The status stanza addresses media by that handle, not by URL,
+     * so a media status without it cannot be published.
+     */
     readonly buildMessageContent: (
         content: WaSendMessageContent
-    ) => Promise<{ message: proto.IMessage }>
+    ) => Promise<{ readonly plaintext: Uint8Array; readonly mediaHandle?: string }>
     readonly generateStanzaId: () => Promise<string>
     /** Resolves the server id from a `<status>` echo; omit to skip the wait. */
     readonly waitForServerId?: (input: {
@@ -111,19 +117,26 @@ export function createNewsletterStatusOps(deps: WaNewsletterStatusDeps): WaNewsl
     return {
         sendStatus: async (input) => {
             const built = await deps.buildMessageContent(input.content)
-            const message =
-                input.statusAttribution === false
-                    ? built.message
-                    : withNewsletterStatusAttribution(built.message)
             const messageId = input.messageId ?? (await deps.generateStanzaId())
-            const payload = proto.Message.encode(message).finish()
+
+            // The builder already encodes, so the attribution context has to
+            // be merged in before that step rather than after.
+            let payload = built.plaintext
+            if (input.statusAttribution !== false) {
+                const decoded = proto.Message.decode(payload)
+                payload = proto.Message.encode(withNewsletterStatusAttribution(decoded)).finish()
+            }
 
             const node = buildNewsletterStatusNode({
                 jid: input.jid,
                 messageId,
                 plaintext: payload,
                 ...(input.mediaType ? { mediaType: input.mediaType } : {}),
-                ...(input.mediaHandle !== undefined ? { mediaHandle: input.mediaHandle } : {}),
+                ...(input.mediaHandle !== undefined
+                    ? { mediaHandle: input.mediaHandle }
+                    : built.mediaHandle
+                      ? { mediaHandle: built.mediaHandle }
+                      : {}),
                 ...(input.interactionType ? { interactionType: input.interactionType } : {}),
                 ...(input.parentServerId !== undefined
                     ? { parentServerId: input.parentServerId }
