@@ -26,6 +26,42 @@ export type {
     WaCallLogResult,
     WaCallLogType
 } from '@client/events/call-log'
+export {
+    buildNewsletterAdminProfileStatusMessage,
+    buildNewsletterStatusNode,
+    buildNewsletterStatusReactionNode,
+    buildNewsletterStatusRevokeNode,
+    buildNewsletterStatusUpdatesIq,
+    toNewsletterServerId,
+    withNewsletterStatusAttribution,
+    WA_NEWSLETTER_SERVER_ID_MAX,
+    WA_NEWSLETTER_SERVER_ID_MIN,
+    WA_NEWSLETTER_STATUS_EDITS,
+    WA_NEWSLETTER_STATUS_INTERACTIONS,
+    WA_NEWSLETTER_STATUS_MEDIA_TYPES
+} from '@transport/node/builders/newsletter-status'
+export type {
+    WaNewsletterStatusInteraction,
+    WaNewsletterStatusMediaType
+} from '@transport/node/builders/newsletter-status'
+export {
+    parseNewsletterStatusAck,
+    parseNewsletterStatusNode,
+    parseNewsletterStatusesResponse,
+    parseNewsletterStatusUpdatesResponse,
+    readNewsletterStatusServerId
+} from '@client/events/newsletter-status'
+export type {
+    WaNewsletterStatus,
+    WaNewsletterStatusAck,
+    WaNewsletterStatusesPage
+} from '@client/events/newsletter-status'
+export type {
+    WaNewsletterSendStatusInput,
+    WaNewsletterSendStatusResult,
+    WaNewsletterStatusOps,
+    WaNewsletterStatusReactInput
+} from '@client/newsletter/status'
 export type { WaClientDependencies } from '@client/WaClientFactory'
 export type {
     WaClientEventMap,

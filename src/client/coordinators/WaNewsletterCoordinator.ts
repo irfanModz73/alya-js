@@ -6,6 +6,9 @@ import {
     type WaNewsletterMessagingOps
 } from '@client/newsletter/messaging'
 import type { WaNewsletterMexDeps } from '@client/newsletter/mex'
+import { createNewsletterStatusOps, type WaNewsletterStatusOps } from '@client/newsletter/status'
+import type { WaSendMessageContent } from '@message/types'
+import type { Proto } from '@proto'
 
 export { parseNewsletterMetadata } from '@client/newsletter/parse'
 
@@ -51,9 +54,20 @@ export type {
  */
 export type WaNewsletterCoordinator = WaNewsletterDiscoveryOps &
     WaNewsletterAdminOps &
-    WaNewsletterMessagingOps
+    WaNewsletterMessagingOps &
+    WaNewsletterStatusOps
 
-export type WaNewsletterCoordinatorOptions = WaNewsletterMessagingDeps
+export type WaNewsletterCoordinatorOptions = WaNewsletterMessagingDeps & {
+    /** Builds the outgoing message payload for a status publish. */
+    readonly buildStatusContent?: (
+        content: WaSendMessageContent
+    ) => Promise<{ message: Proto.IMessage }>
+    readonly waitForServerId?: (input: {
+        jid: string
+        messageId: string
+        timeoutMs?: number
+    }) => Promise<number | undefined>
+}
 
 /** Builds a {@link WaNewsletterCoordinator} from its MEX/messaging dependencies. */
 export function createNewsletterCoordinator(
@@ -63,6 +77,15 @@ export function createNewsletterCoordinator(
     return {
         ...createDiscoveryOps(mexDeps),
         ...createAdminOps(mexDeps),
-        ...createMessagingOps(options)
+        ...createMessagingOps(options),
+        ...createNewsletterStatusOps({
+            sendNode: options.sendNode,
+            query: (node) => options.mexSocket.query(node),
+            buildMessageContent:
+                options.buildStatusContent ??
+                (() => Promise.resolve({ message: { conversation: '' } })),
+            generateStanzaId: options.generateStanzaId,
+            ...(options.waitForServerId ? { waitForServerId: options.waitForServerId } : {})
+        })
     }
 }

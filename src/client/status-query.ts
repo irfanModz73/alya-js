@@ -1,7 +1,6 @@
-import type { Proto } from '@proto'
+import { proto, type Proto } from '@proto'
 import { WA_DEFAULTS } from '@protocol/defaults'
 import type { WaMessageStore, WaStoredMessageRecord } from '@store/contracts/message.store'
-import { proto as protoNs } from '@proto'
 
 /** Status media kinds a caller can ask for. Text is deliberately excluded. */
 export const WA_STATUS_MEDIA_KINDS = Object.freeze({
@@ -109,7 +108,7 @@ export async function listStatuses(
             if (!bytes || bytes.length === 0) continue
             let message: Proto.IMessage
             try {
-                message = protoNs.Message.decode(bytes)
+                message = proto.Message.decode(bytes)
             } catch {
                 continue
             }

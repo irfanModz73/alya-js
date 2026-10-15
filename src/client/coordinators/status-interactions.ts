@@ -1,6 +1,5 @@
+import { listStatuses ,type  WaStatusEntry,type  WaStatusListOptions,type  WaStatusMediaKind } from '@client/status-query'
 import type { WaSendMessageOptions } from '@client/types'
-import { listStatuses } from '@client/status-query'
-import type { WaStatusEntry, WaStatusListOptions, WaStatusMediaKind } from '@client/status-query'
 import type { WaMessagePublishResult, WaSendMessageContent } from '@message/types'
 import { WA_DEFAULTS } from '@protocol/defaults'
 import type { WaMessageStore } from '@store/contracts/message.store'
