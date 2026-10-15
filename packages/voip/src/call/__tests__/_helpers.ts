@@ -2,7 +2,7 @@ import type {
     WaCallMediaEvent,
     WaCallMediaMessage,
     WaCallMediaPlanUpdate
-} from '@zapo-js/voip-media'
+} from '@alya-js/voip-media'
 
 import type { WaCallMediaLink, WaCallMediaLinkEvents } from '../media-link.js'
 import type { WaCallMediaSessionDelegate } from '../WaCallMediaSession.js'

@@ -6,7 +6,7 @@
 // Run from repo root via tsx so the @crypto path aliases resolve:
 //   node --import tsx packages/native/__test__/cross-check.cjs
 
-// Force the JS implementations on the zapo-js side BEFORE it loads, so the
+// Force the JS implementations on the alya-js side BEFORE it loads, so the
 // comparison is accelerator vs pure JS instead of accelerator vs itself.
 process.env.ZAPO_XEDDSA_FORCE_JS = '1'
 process.env.ZAPO_X25519_FORCE_JS = '1'

@@ -208,9 +208,9 @@ function resolveStore<T>(
  *
  * @example
  * ```ts
- * // Persistent setup with @zapo-js/store-sqlite (recommended for production)
- * import { createSqliteStore } from '@zapo-js/store-sqlite'
- * import { createStore } from 'zapo-js'
+ * // Persistent setup with @alya-js/store-sqlite (recommended for production)
+ * import { createSqliteStore } from '@alya-js/store-sqlite'
+ * import { createStore } from 'alya-js'
  *
  * const store = createStore({
  *     backends: { sqlite: createSqliteStore({ path: '.auth/state.sqlite' }) },

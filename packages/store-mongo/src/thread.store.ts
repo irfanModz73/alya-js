@@ -1,4 +1,4 @@
-import type { WaStoredThreadRecord, WaThreadStore } from 'zapo-js/store'
+import type { WaStoredThreadRecord, WaThreadStore } from 'alya-js/store'
 
 import { BaseMongoStore } from './BaseMongoStore'
 import { safeLimit } from './helpers'

@@ -1,7 +1,7 @@
-import type { Logger } from 'zapo-js'
-import { toError } from 'zapo-js/util'
+import type { Logger } from 'alya-js'
+import { toError } from 'alya-js/util'
 
-import type { WaCallMediaVideo } from '@zapo-js/voip-media'
+import type { WaCallMediaVideo } from '@alya-js/voip-media'
 
 import {
     buildVideoStateStanza,

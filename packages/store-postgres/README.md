@@ -1,13 +1,13 @@
-# @zapo-js/store-postgres
+# @alya-js/store-postgres
 
-PostgreSQL-backed persistent store for [`zapo-js`](https://www.npmjs.com/package/zapo-js). Built on [`pg`](https://node-postgres.com/). Best fit when your stack standardizes on Postgres and you want session state to ride the same backups, replication and IAM as your application data.
+PostgreSQL-backed persistent store for [`alya-js`](https://www.npmjs.com/package/alya-js). Built on [`pg`](https://node-postgres.com/). Best fit when your stack standardizes on Postgres and you want session state to ride the same backups, replication and IAM as your application data.
 
 Migrations run lazily on first touch per domain. Cache domains require a background poller (`startCleanup`) because Postgres has no native TTL.
 
 ## Install
 
 ```bash
-npm install @zapo-js/store-postgres pg
+npm install @alya-js/store-postgres pg
 ```
 
 `pg` is a peer dependency.
@@ -15,8 +15,8 @@ npm install @zapo-js/store-postgres pg
 ## Quick start
 
 ```ts
-import { createStore, WaClient } from 'zapo-js'
-import { createPostgresStore } from '@zapo-js/store-postgres'
+import { createStore, WaClient } from 'alya-js'
+import { createPostgresStore } from '@alya-js/store-postgres'
 
 const result = createPostgresStore({
     pool: { connectionString: process.env.DATABASE_URL },
@@ -67,4 +67,4 @@ The result exposes `{ pool, stores, caches, startCleanup, destroy }`. `destroy()
 - Uses `BYTEA` for binary columns and `JSONB` for structured state where applicable; uses `ON CONFLICT DO UPDATE` upserts.
 - Migrations use advisory locks, safe to run concurrently from multiple processes.
 
-See the main [`zapo-js`](../../README.md) docs for the full store contract.
+See the main [`alya-js`](../../README.md) docs for the full store contract.

@@ -1,6 +1,6 @@
-import type { Logger } from 'zapo-js'
-import type { BinaryNode } from 'zapo-js/transport'
-import { toError } from 'zapo-js/util'
+import type { Logger } from 'alya-js'
+import type { BinaryNode } from 'alya-js/transport'
+import { toError } from 'alya-js/util'
 
 import { extractNodeInfo } from '../signaling/call-stanza.js'
 import {

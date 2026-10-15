@@ -12,7 +12,7 @@
  *   "[Circular]"                   - Cycle marker
  */
 
-import { base64ToBytes, bytesToBase64 } from 'zapo-js/util'
+import { base64ToBytes, bytesToBase64 } from 'alya-js/util'
 
 const BYTES = '$bytes'
 const BIGINT = '$bigint'

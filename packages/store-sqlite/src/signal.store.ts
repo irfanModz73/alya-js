@@ -6,9 +6,9 @@ import {
     type SignalRegistrationRow,
     type SignalSignedPreKeyRow,
     type SignedPreKeyRecord
-} from 'zapo-js/signal'
-import type { WaSignalStore as WaSignalStoreContract } from 'zapo-js/store'
-import { asOptionalNumber } from 'zapo-js/util'
+} from 'alya-js/signal'
+import type { WaSignalStore as WaSignalStoreContract } from 'alya-js/store'
+import { asOptionalNumber } from 'alya-js/util'
 
 import { BaseSqliteStore } from './BaseSqliteStore'
 import type { WaSqliteConnection } from './connection'

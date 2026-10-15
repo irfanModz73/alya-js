@@ -1,7 +1,7 @@
-import { createNoopLogger } from 'zapo-js'
-import type { BinaryNode } from 'zapo-js/transport'
+import { createNoopLogger } from 'alya-js'
+import type { BinaryNode } from 'alya-js/transport'
 
-import type { WaCallMediaGroup, WaCallMediaRelays } from '@zapo-js/voip-media'
+import type { WaCallMediaGroup, WaCallMediaRelays } from '@alya-js/voip-media'
 
 import {
     CallMediaType,

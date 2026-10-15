@@ -1,5 +1,5 @@
 import type { PoolConnection } from 'mysql2/promise'
-import type { WaStoredThreadRecord, WaThreadStore } from 'zapo-js/store'
+import type { WaStoredThreadRecord, WaThreadStore } from 'alya-js/store'
 
 import { BaseMysqlStore } from './BaseMysqlStore'
 import { affectedRows, type MysqlRow, queryFirst, queryRows, safeLimit } from './helpers'

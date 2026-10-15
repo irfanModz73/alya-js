@@ -1,5 +1,5 @@
 import Redis, { type RedisOptions } from 'ioredis'
-import type { Logger } from 'zapo-js'
+import type { Logger } from 'alya-js'
 
 import { WaAppStateRedisStore } from './appstate.store'
 import { WaAuthRedisStore } from './auth.store'
@@ -124,8 +124,8 @@ function isRedis(value: Redis | RedisOptions): value is Redis {
  *
  * @example
  * ```ts
- * import { createStore, WaClient } from 'zapo-js'
- * import { createRedisStore } from '@zapo-js/store-redis'
+ * import { createStore, WaClient } from 'alya-js'
+ * import { createRedisStore } from '@alya-js/store-redis'
  *
  * const store = createStore({
  *     backends: {

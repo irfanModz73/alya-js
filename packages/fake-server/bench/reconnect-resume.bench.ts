@@ -19,7 +19,7 @@
 import type { Agent } from 'node:https'
 import { performance } from 'node:perf_hooks'
 
-import { WaClient, type WaClientEventMap, type WaStore } from 'zapo-js'
+import { WaClient, type WaClientEventMap, type WaStore } from 'alya-js'
 
 import type { FakeWaServer } from '../src/api/FakeWaServer'
 
@@ -130,7 +130,7 @@ async function main(): Promise<void> {
     const backendName = process.env.ZAPO_BENCH_STORE ?? 'memory'
     const separate = argSet.has('--separate-process')
 
-    console.log('zapo-js reconnect-resume bench')
+    console.log('alya-js reconnect-resume bench')
     console.log('──────────────────────────────')
     console.log(`  iterations : ${iterations}`)
     console.log(`  store      : ${backendName}`)

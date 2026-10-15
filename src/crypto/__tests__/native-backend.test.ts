@@ -8,16 +8,16 @@ function moduleNotFound(message: string): Error {
 }
 
 test('package-level module-not-found is classified as absence for both backends', () => {
-    const napiMissing = moduleNotFound("Cannot find module '@zapo-js/native'")
+    const napiMissing = moduleNotFound("Cannot find module '@alya-js/native'")
     assert.equal(isBackendAbsence('napi', napiMissing), true)
 
     const wasmMissing = moduleNotFound(
-        "Cannot find module '@zapo-js/native/wasm/pkg/zapo_native_wasm.js'"
+        "Cannot find module '@alya-js/native/wasm/pkg/zapo_native_wasm.js'"
     )
     assert.equal(isBackendAbsence('wasm', wasmMissing), true)
 
     const esmVariant = Object.assign(
-        new Error("Cannot find package '@zapo-js/native' imported from /app/index.mjs"),
+        new Error("Cannot find package '@alya-js/native' imported from /app/index.mjs"),
         { code: 'ERR_MODULE_NOT_FOUND' }
     )
     assert.equal(isBackendAbsence('napi', esmVariant), true)
@@ -25,12 +25,12 @@ test('package-level module-not-found is classified as absence for both backends'
 
 test('missing entry files resolve to absence, including windows path form', () => {
     const entryMissing = moduleNotFound(
-        "Cannot find module 'C:\\app\\node_modules\\@zapo-js\\native\\binding.js'"
+        "Cannot find module 'C:\\app\\node_modules\\@alya-js\\native\\binding.js'"
     )
     assert.equal(isBackendAbsence('napi', entryMissing), true)
 
     const glueMissing = moduleNotFound(
-        "Cannot find module 'C:\\app\\node_modules\\@zapo-js\\native\\wasm\\pkg\\zapo_native_wasm.js'"
+        "Cannot find module 'C:\\app\\node_modules\\@alya-js\\native\\wasm\\pkg\\zapo_native_wasm.js'"
     )
     assert.equal(isBackendAbsence('wasm', glueMissing), true)
 })
@@ -50,12 +50,12 @@ test('esm builds without require stay silent, other reference errors do not', ()
 
 test('present-but-broken backends are never classified as absence', () => {
     const wasmBinaryMissing = moduleNotFound(
-        "Cannot find module 'C:\\app\\node_modules\\@zapo-js\\native\\wasm\\pkg\\zapo_native_wasm_bg.wasm'"
+        "Cannot find module 'C:\\app\\node_modules\\@alya-js\\native\\wasm\\pkg\\zapo_native_wasm_bg.wasm'"
     )
     assert.equal(isBackendAbsence('wasm', wasmBinaryMissing), false)
 
     const wasmBinaryMissingPosix = moduleNotFound(
-        "Cannot find module '/app/node_modules/@zapo-js/native/wasm/pkg/zapo_native_wasm_bg.wasm'"
+        "Cannot find module '/app/node_modules/@alya-js/native/wasm/pkg/zapo_native_wasm_bg.wasm'"
     )
     assert.equal(isBackendAbsence('wasm', wasmBinaryMissingPosix), false)
 

@@ -1,8 +1,8 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
 
-import { createNoopLogger, type Logger } from 'zapo-js'
-import type { BinaryNode } from 'zapo-js/transport'
+import { createNoopLogger, type Logger } from 'alya-js'
+import type { BinaryNode } from 'alya-js/transport'
 
 import { CallState, type WaVoipDeps } from '../../types.js'
 import { WaCallManager } from '../WaCallManager.js'

@@ -124,7 +124,7 @@ export interface WaBotCoordinator {
      * - Call {@link listBots} - returns one entry per available bot with
      *   both `jid` (the `@bot` JID for direct sends) and `fbidJid` (the
      *   form for `options.botJid` on the mention path).
-     * - Use the `WA_BOT_KNOWN_JIDS` constants from `zapo-js/protocol`
+     * - Use the `WA_BOT_KNOWN_JIDS` constants from `alya-js/protocol`
      *   when you know the target (`META_AI_PN`, `META_AI_FBID`,
      *   `MANUS_FBID`, `HATCH_FBID`, ...). No IQ required.
      * - Read it off an incoming `message` event whose sender is a bot

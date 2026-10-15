@@ -1,5 +1,5 @@
 import type { Pool, PoolConfig } from 'pg'
-import type { Logger } from 'zapo-js'
+import type { Logger } from 'alya-js'
 
 import { WaAppStatePgStore } from './appstate.store'
 import { WaAuthPgStore } from './auth.store'
@@ -120,8 +120,8 @@ function isPool(value: Pool | PoolConfig): value is Pool {
  *
  * @example
  * ```ts
- * import { createStore, WaClient } from 'zapo-js'
- * import { createPostgresStore } from '@zapo-js/store-postgres'
+ * import { createStore, WaClient } from 'alya-js'
+ * import { createPostgresStore } from '@alya-js/store-postgres'
  *
  * const result = createPostgresStore({
  *     pool: { connectionString: process.env.DATABASE_URL }

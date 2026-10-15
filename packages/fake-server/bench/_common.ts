@@ -14,7 +14,7 @@ import * as inspector from 'node:inspector/promises'
 import { resolve as resolvePath } from 'node:path'
 import { performance } from 'node:perf_hooks'
 
-import type { Logger } from 'zapo-js'
+import type { Logger } from 'alya-js'
 
 const BYTES_PER_MEBIBYTE = 1_048_576
 

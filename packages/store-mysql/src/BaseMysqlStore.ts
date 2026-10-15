@@ -1,6 +1,6 @@
 import type { Pool, PoolConnection } from 'mysql2/promise'
-import type { Logger } from 'zapo-js'
-import { resolvePositive } from 'zapo-js/util'
+import type { Logger } from 'alya-js'
+import { resolvePositive } from 'alya-js/util'
 
 import { ensureMysqlMigrations } from './connection'
 import { assertSafeTablePrefix } from './helpers'

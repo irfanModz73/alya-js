@@ -1,4 +1,4 @@
-import { setBoundedMapEntry } from 'zapo-js/util'
+import { setBoundedMapEntry } from 'alya-js/util'
 
 /** How long a terminate that found no call waits for its offer, and how many are kept. */
 const TERMINATED_BEFORE_OFFER_TTL_MS = 30_000

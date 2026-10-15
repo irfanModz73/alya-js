@@ -1,11 +1,11 @@
-import type { WaMessageStore as Contract, WaStoredMessageRecord } from 'zapo-js/store'
+import type { WaMessageStore as Contract, WaStoredMessageRecord } from 'alya-js/store'
 import {
     asOptionalBytes,
     asOptionalNumber,
     asOptionalString,
     asString,
     normalizeQueryLimit
-} from 'zapo-js/util'
+} from 'alya-js/util'
 
 import { BaseSqliteStore } from './BaseSqliteStore'
 import type { WaSqliteConnection } from './connection'

@@ -19,7 +19,7 @@
  * the fake server runs in a forked child and gets its own profiles.
  */
 
-import type { WaClientEventMap } from 'zapo-js'
+import type { WaClientEventMap } from 'alya-js'
 
 import {
     BenchProfiler,
@@ -271,7 +271,7 @@ async function main(): Promise<void> {
     const backendName = process.env.ZAPO_BENCH_STORE ?? 'memory'
     const separate = argSet.has('--separate-process')
 
-    console.log('zapo-js history-sync bench')
+    console.log('alya-js history-sync bench')
     console.log('──────────────────────────')
     console.log(`  chunks per scenario : ${chunks}`)
     console.log(`  scenarios           : ${requested.join(', ')}`)

@@ -1,5 +1,5 @@
-import type { BinaryNode } from 'zapo-js'
-import { proto } from 'zapo-js/proto'
+import type { BinaryNode } from 'alya-js'
+import { proto } from 'alya-js/proto'
 import {
     isGroupJid,
     isNewsletterJid,
@@ -8,7 +8,7 @@ import {
     WA_ENC_CIPHERTEXT_TYPES,
     WA_ENC_MEDIA_TYPES,
     WA_MESSAGE_TAGS
-} from 'zapo-js/protocol'
+} from 'alya-js/protocol'
 
 export type WamCiphertextTypeKey =
     | 'MESSAGE'

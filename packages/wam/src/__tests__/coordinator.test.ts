@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
 
-import type { BinaryNode, WaClientPluginContext } from 'zapo-js'
+import type { BinaryNode, WaClientPluginContext } from 'alya-js'
 
 import { WaWamCoordinator } from '../WaWamCoordinator.js'
 

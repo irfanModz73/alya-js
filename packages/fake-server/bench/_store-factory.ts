@@ -1,8 +1,8 @@
 /**
  * Pluggable store factory for the fake-server bench suite. Selects a
  * backend via `ZAPO_BENCH_STORE` (memory | sqlite | postgres | mysql |
- * redis | mongo) and wires the matching `@zapo-js/store-*` package into
- * `createStore()` from `zapo-js`.
+ * redis | mongo) and wires the matching `@alya-js/store-*` package into
+ * `createStore()` from `alya-js`.
  *
  * - `memory` (default): in-process bounded maps. No external dep.
  * - `sqlite`: file or `:memory:`. Driver via `ZAPO_BENCH_SQLITE_PATH`
@@ -27,7 +27,7 @@ import { unlink } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join as joinPath } from 'node:path'
 
-import { createStore, type WaCreateStoreOptions, type WaStore } from 'zapo-js'
+import { createStore, type WaCreateStoreOptions, type WaStore } from 'alya-js'
 
 type ProvidersFor<B extends string> = Required<NonNullable<WaCreateStoreOptions<B>['providers']>>
 
@@ -117,7 +117,7 @@ function buildMemoryStore(): BenchStoreFixture {
 }
 
 async function buildSqliteStore(): Promise<BenchStoreFixture> {
-    const { createSqliteStore } = await import('@zapo-js/store-sqlite')
+    const { createSqliteStore } = await import('@alya-js/store-sqlite')
     const userPath = process.env.ZAPO_BENCH_SQLITE_PATH
     const ownsFile = !userPath
     const path = userPath ?? joinPath(tmpdir(), `zapo-bench-${process.pid}-${Date.now()}.sqlite`)
@@ -142,7 +142,7 @@ async function buildSqliteStore(): Promise<BenchStoreFixture> {
 }
 
 async function buildPostgresStore(): Promise<BenchStoreFixture> {
-    const { createPostgresStore } = await import('@zapo-js/store-postgres')
+    const { createPostgresStore } = await import('@alya-js/store-postgres')
     const pg = await import('pg')
     const host = requireEnv('ZAPO_TEST_PG_HOST')
     const port = parsePort('ZAPO_TEST_PG_PORT')
@@ -254,7 +254,7 @@ async function buildPostgresStore(): Promise<BenchStoreFixture> {
 }
 
 async function buildMysqlStore(): Promise<BenchStoreFixture> {
-    const { createMysqlStore } = await import('@zapo-js/store-mysql')
+    const { createMysqlStore } = await import('@alya-js/store-mysql')
     const mysql = await import('mysql2/promise')
     const host = requireEnv('ZAPO_TEST_MYSQL_HOST')
     const port = parsePort('ZAPO_TEST_MYSQL_PORT')
@@ -371,7 +371,7 @@ async function buildMysqlStore(): Promise<BenchStoreFixture> {
 }
 
 async function buildRedisStore(): Promise<BenchStoreFixture> {
-    const { createRedisStore } = await import('@zapo-js/store-redis')
+    const { createRedisStore } = await import('@alya-js/store-redis')
     const { Redis } = await import('ioredis')
     const host = requireEnv('ZAPO_TEST_REDIS_HOST')
     const port = parsePort('ZAPO_TEST_REDIS_PORT')
@@ -444,7 +444,7 @@ async function buildRedisStore(): Promise<BenchStoreFixture> {
 }
 
 async function buildMongoStore(): Promise<BenchStoreFixture> {
-    const { createMongoStore } = await import('@zapo-js/store-mongo')
+    const { createMongoStore } = await import('@alya-js/store-mongo')
     const { MongoClient } = await import('mongodb')
     const host = requireEnv('ZAPO_TEST_MONGO_HOST')
     const port = parsePort('ZAPO_TEST_MONGO_PORT')

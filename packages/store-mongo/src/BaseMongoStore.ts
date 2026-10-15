@@ -1,5 +1,5 @@
 import type { ClientSession, Collection, Db, Document } from 'mongodb'
-import type { Logger } from 'zapo-js'
+import type { Logger } from 'alya-js'
 
 import { assertSafeCollectionPrefix } from './helpers'
 import type { WaMongoStorageOptions } from './types'

@@ -1,5 +1,5 @@
-import type { PreKeyRecord } from 'zapo-js/signal'
-import type { WaPreKeyStore } from 'zapo-js/store'
+import type { PreKeyRecord } from 'alya-js/signal'
+import type { WaPreKeyStore } from 'alya-js/store'
 
 import { BaseRedisStore } from './BaseRedisStore'
 import { deleteKeysChunked, safeLimit, scanKeys, toRedisBuffer } from './helpers'

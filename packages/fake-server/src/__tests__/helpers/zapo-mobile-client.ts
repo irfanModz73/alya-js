@@ -1,4 +1,4 @@
-import { createNoopLogger, createStore, type Logger, WaClient } from 'zapo-js'
+import { createNoopLogger, createStore, type Logger, WaClient } from 'alya-js'
 
 import { type FakeMobilePrimary, seedFakeMobilePrimary } from '../../api/FakeMobilePrimary'
 import type { FakeWaServer } from '../../api/FakeWaServer'

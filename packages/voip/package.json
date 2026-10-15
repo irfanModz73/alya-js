@@ -1,7 +1,7 @@
 {
-    "name": "@zapo-js/voip",
+    "name": "@alya-js/voip",
     "version": "1.4.0",
-    "description": "WhatsApp VOIP (calling) plugin for zapo-js — MLow/WASM codec, SRTP, STUN and WebRTC/SCTP relay transport",
+    "description": "WhatsApp VOIP (calling) plugin for alya-js — MLow/WASM codec, SRTP, STUN and WebRTC/SCTP relay transport",
     "license": "MIT",
     "author": "vinikjkkj <contact@vinicius.email> (https://github.com/vinikjkkj)",
     "repository": {
@@ -32,12 +32,12 @@
         "test": "node --import tsx --test \"src/**/__tests__/**/*.test.ts\""
     },
     "dependencies": {
-        "@zapo-js/voip-media": "^0.3.0"
+        "@alya-js/voip-media": "^0.3.0"
     },
     "peerDependencies": {
         "@roamhq/wrtc": ">=0.10.0",
         "libmlow-wasm-fork": "^0.2.0",
-        "zapo-js": "^1.0.0"
+        "alya-js": "^1.0.0"
     },
     "peerDependenciesMeta": {
         "@roamhq/wrtc": {
@@ -50,7 +50,7 @@
     "devDependencies": {
         "@roamhq/wrtc": "^0.10.0",
         "libmlow-wasm-fork": "^0.2.0",
-        "zapo-js": "file:../.."
+        "alya-js": "file:../.."
     },
     "engines": {
         "node": ">=20.9.0"

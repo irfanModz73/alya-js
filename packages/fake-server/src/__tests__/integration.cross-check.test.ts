@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 
-import type { WaClient, WaClientEventMap } from 'zapo-js'
+import type { WaClient, WaClientEventMap } from 'alya-js'
 
 import { FakeWaServer } from '../api/FakeWaServer'
 
@@ -24,7 +24,7 @@ function waitForEvent<K extends keyof WaClientEventMap>(
     })
 }
 
-test('zapo-js client completes a full noise XX handshake against the fake server', async () => {
+test('alya-js client completes a full noise XX handshake against the fake server', async () => {
     const server = await FakeWaServer.start()
     const { client } = createZapoClient(server, { sessionId: 'fake-server-test' })
 

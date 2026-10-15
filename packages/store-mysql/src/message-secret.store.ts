@@ -1,4 +1,4 @@
-import type { WaMessageSecretEntry, WaMessageSecretStore } from 'zapo-js/store'
+import type { WaMessageSecretEntry, WaMessageSecretStore } from 'alya-js/store'
 
 import { BaseMysqlStore } from './BaseMysqlStore'
 import { affectedRows, queryRows, toBytes } from './helpers'

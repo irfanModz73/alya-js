@@ -4,7 +4,7 @@
  *
  *   - `auto` (default) – try the NAPI addon first, then the WASM build,
  *                        then no accelerator.
- *   - `napi`           – only the compiled Rust NAPI addon (`@zapo-js/native`).
+ *   - `napi`           – only the compiled Rust NAPI addon (`@alya-js/native`).
  *   - `wasm`           – only the wasm-bindgen build of the same Rust core.
  *                        The shipped artifact targets the web (ESM glue +
  *                        explicit init) so one build serves browsers and
@@ -36,8 +36,8 @@ export interface NativeCryptoModule {
     ) => boolean
 }
 
-const WASM_MODULE_SPECIFIER = '@zapo-js/native/wasm/pkg/zapo_native_wasm.js'
-const WASM_BINARY_SPECIFIER = '@zapo-js/native/wasm/pkg/zapo_native_wasm_bg.wasm'
+const WASM_MODULE_SPECIFIER = '@alya-js/native/wasm/pkg/zapo_native_wasm.js'
+const WASM_BINARY_SPECIFIER = '@alya-js/native/wasm/pkg/zapo_native_wasm_bg.wasm'
 
 interface WasmWebModule extends NativeCryptoModule {
     readonly initSync: (input: { readonly module: Uint8Array }) => unknown
@@ -53,8 +53,8 @@ function loadWasmBackend(): NativeCryptoModule {
 let cached: NativeCryptoModule | null | undefined
 
 const ABSENCE_TOKENS = {
-    napi: ["'@zapo-js/native'", 'binding.js', 'Cannot find native binding'],
-    wasm: ["'@zapo-js/native'", 'zapo_native_wasm.js']
+    napi: ["'@alya-js/native'", 'binding.js', 'Cannot find native binding'],
+    wasm: ["'@alya-js/native'", 'zapo_native_wasm.js']
 } as const
 
 export type NativeBackendKind = keyof typeof ABSENCE_TOKENS
@@ -94,7 +94,7 @@ export function resolveNativeCryptoBackend(): NativeCryptoModule | null {
     if (backend === 'js' || backend === 'none') return cached
     if (backend === 'napi' || backend === 'auto') {
         try {
-            cached = require('@zapo-js/native') as NativeCryptoModule
+            cached = require('@alya-js/native') as NativeCryptoModule
         } catch (error) {
             if (!isBackendAbsence('napi', error)) warnLoadFailure('napi', error)
         }

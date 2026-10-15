@@ -1,15 +1,15 @@
 import { EventEmitter } from 'node:events'
 
-import { createNoopLogger, type Logger } from 'zapo-js'
-import { type BinaryNode, findNodeChild, hasNodeChild } from 'zapo-js/transport'
-import { resolvePositive, toError, tryAsNumber } from 'zapo-js/util'
+import { createNoopLogger, type Logger } from 'alya-js'
+import { type BinaryNode, findNodeChild, hasNodeChild } from 'alya-js/transport'
+import { resolvePositive, toError, tryAsNumber } from 'alya-js/util'
 
 import type {
     MLowCompanionModelSource,
     MLowRedOptions,
     WaCallMediaEvent,
     WaCallMediaMessage
-} from '@zapo-js/voip-media'
+} from '@alya-js/voip-media'
 
 import { generateCallKey } from '../crypto/encryption.js'
 import { groupParticipantAccountKey } from '../jid.js'

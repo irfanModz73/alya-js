@@ -76,7 +76,7 @@ module.exports = [
             'import/parsers': {
                 '@typescript-eslint/parser': ['.ts', '.tsx']
             },
-            'import/internal-regex': '^@zapo-js/',
+            'import/internal-regex': '^@alya-js/',
             'import/resolver': {
                 node: {
                     extensions: ['.ts', '.tsx', '.js', '.mjs', '.cjs']
@@ -170,7 +170,7 @@ module.exports = [
             'no-restricted-imports': 'off'
         }
     },
-    // voip-media is installed on its own in a browser, where neither zapo-js nor
+    // voip-media is installed on its own in a browser, where neither alya-js nor
     // Node exists. The core runs on both hosts and only sees what they inject; web/
     // and node/ are the two hosts and never reach into each other. Tests run under
     // Node and may use anything.
@@ -203,9 +203,9 @@ module.exports = [
                 {
                     patterns: [
                         {
-                            group: ['zapo-js', 'zapo-js/*', '@zapo-js/*'],
+                            group: ['alya-js', 'alya-js/*', '@alya-js/*'],
                             message:
-                                'voip-media runs in the browser without zapo-js. Keep the helper in this package.'
+                                'voip-media runs in the browser without alya-js. Keep the helper in this package.'
                         },
                         { group: forbidden, message }
                     ]
@@ -226,9 +226,9 @@ module.exports = [
                 {
                     patterns: [
                         {
-                            group: ['zapo-js', 'zapo-js/*'],
+                            group: ['alya-js', 'alya-js/*'],
                             message:
-                                'fake-server Layer 2/3 must not import zapo-js. Add the primitive to src/transport/ and import from there.'
+                                'fake-server Layer 2/3 must not import alya-js. Add the primitive to src/transport/ and import from there.'
                         }
                     ]
                 }
@@ -237,7 +237,7 @@ module.exports = [
     },
     {
         // Cross-check tests intentionally drive the fake server side-by-side
-        // with the real zapo-js side to validate that they interoperate.
+        // with the real alya-js side to validate that they interoperate.
         // The firewall is relaxed here because crossing it is the entire
         // purpose of these tests.
         files: [

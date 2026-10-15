@@ -1,7 +1,7 @@
 import { readFile } from 'node:fs/promises'
 
-import type { Logger } from 'zapo-js'
-import { toBytesView } from 'zapo-js/util'
+import type { Logger } from 'alya-js'
+import { toBytesView } from 'alya-js/util'
 
 import {
     dialableRelayEndpoints,
@@ -18,8 +18,8 @@ import {
     WaCallMediaPlane,
     type WaCallMediaPlanUpdate,
     type WaCallReaction
-} from '@zapo-js/voip-media'
-import { nodeMediaHost, WaRawUdpLeg } from '@zapo-js/voip-media/node'
+} from '@alya-js/voip-media'
+import { nodeMediaHost, WaRawUdpLeg } from '@alya-js/voip-media/node'
 
 import { WaAudioEngine } from '../media/WaAudioEngine.js'
 

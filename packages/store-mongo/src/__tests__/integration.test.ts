@@ -2,9 +2,9 @@ import assert from 'node:assert/strict'
 import { after, before, describe, it } from 'node:test'
 
 import { MongoClient } from 'mongodb'
-import { toSerializedPubKey, X25519 } from 'zapo-js/crypto'
-import { WA_APP_STATE_COLLECTIONS } from 'zapo-js/protocol'
-import type { SignalAddress, SignalSessionRecord } from 'zapo-js/signal'
+import { toSerializedPubKey, X25519 } from 'alya-js/crypto'
+import { WA_APP_STATE_COLLECTIONS } from 'alya-js/protocol'
+import type { SignalAddress, SignalSessionRecord } from 'alya-js/signal'
 
 import { createMongoStore, type WaMongoStoreResult } from '../index'
 

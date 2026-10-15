@@ -1,8 +1,8 @@
-import { createNoopLogger, type Logger, unpadPkcs7, writeRandomPadMax16 } from 'zapo-js'
-import { proto } from 'zapo-js/proto'
-import { parseSignalAddressFromJid } from 'zapo-js/protocol'
-import { type BinaryNode, findNodeChild, getNodeChildren } from 'zapo-js/transport'
-import { toError } from 'zapo-js/util'
+import { createNoopLogger, type Logger, unpadPkcs7, writeRandomPadMax16 } from 'alya-js'
+import { proto } from 'alya-js/proto'
+import { parseSignalAddressFromJid } from 'alya-js/protocol'
+import { type BinaryNode, findNodeChild, getNodeChildren } from 'alya-js/transport'
+import { toError } from 'alya-js/util'
 
 import type { WaVoipDeps } from '../types.js'
 

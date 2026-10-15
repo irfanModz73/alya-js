@@ -8,7 +8,7 @@ const LOG_LEVEL_PRIORITY: Readonly<Record<LogLevel, number>> = {
     error: 50
 }
 
-/** The `zapo-js` `Logger` shape, redeclared so a browser host can pass any matching object. */
+/** The `alya-js` `Logger` shape, redeclared so a browser host can pass any matching object. */
 export interface Logger {
     readonly level?: LogLevel
     trace(message: string, context?: Readonly<Record<string, unknown>>): void

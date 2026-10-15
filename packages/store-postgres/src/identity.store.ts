@@ -1,7 +1,7 @@
 import type { PoolClient } from 'pg'
-import { signalAddressKey } from 'zapo-js/protocol'
-import { type SignalAddress, type SignalAddressParts, toSignalAddressParts } from 'zapo-js/signal'
-import type { WaIdentityStore } from 'zapo-js/store'
+import { signalAddressKey } from 'alya-js/protocol'
+import { type SignalAddress, type SignalAddressParts, toSignalAddressParts } from 'alya-js/signal'
+import type { WaIdentityStore } from 'alya-js/store'
 
 import { BasePgStore } from './BasePgStore'
 import { queryFirst, queryRows, toBytes } from './helpers'

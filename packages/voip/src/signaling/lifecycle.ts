@@ -1,7 +1,7 @@
-import { createNoopLogger, type Logger } from 'zapo-js'
-import { toUserJid } from 'zapo-js/protocol'
-import { type BinaryNode, buildReceiptNode } from 'zapo-js/transport'
-import { toError } from 'zapo-js/util'
+import { createNoopLogger, type Logger } from 'alya-js'
+import { toUserJid } from 'alya-js/protocol'
+import { type BinaryNode, buildReceiptNode } from 'alya-js/transport'
+import { toError } from 'alya-js/util'
 
 import type { WaVoipDeps, WaVoipStores } from '../types.js'
 

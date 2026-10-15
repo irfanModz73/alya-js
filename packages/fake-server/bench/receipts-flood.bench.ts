@@ -12,7 +12,7 @@
  * the fake server runs in a forked child and gets its own profiles.
  */
 
-import type { WaClientEventMap } from 'zapo-js'
+import type { WaClientEventMap } from 'alya-js'
 
 import { buildReceipt, type FakeReceiptType } from '../src/protocol/push/receipt'
 
@@ -196,7 +196,7 @@ async function main(): Promise<void> {
     const backendName = process.env.ZAPO_BENCH_STORE ?? 'memory'
     const separate = argSet.has('--separate-process')
 
-    console.log('zapo-js receipts-flood bench')
+    console.log('alya-js receipts-flood bench')
     console.log('────────────────────────────')
     console.log(`  receipts : ${totalReceipts}`)
     console.log(`  types    : ${types.join(', ')}`)

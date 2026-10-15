@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
 
-import type { BinaryNode } from 'zapo-js/transport'
+import type { BinaryNode } from 'alya-js/transport'
 
 import { derivePerJidSrtpKey } from '../../crypto/encryption.js'
 import { routeCallStanza } from '../../signaling/bridge.js'

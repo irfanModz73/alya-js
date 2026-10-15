@@ -1,6 +1,6 @@
-# @zapo-js/mcp-server
+# @alya-js/mcp-server
 
-Optional package that exposes [`zapo-js`](https://www.npmjs.com/package/zapo-js) `WaClient` sessions **and** the `zapo-js` module namespace as MCP tools, so an LLM agent (Claude Code, Cursor, etc.) can drive end-to-end WhatsApp flows - connect, pair, send, query groups/newsletters, inspect events, walk SQL state - without writing throwaway scripts. Source: [`packages/mcp-server/`](.).
+Optional package that exposes [`alya-js`](https://www.npmjs.com/package/alya-js) `WaClient` sessions **and** the `alya-js` module namespace as MCP tools, so an LLM agent (Claude Code, Cursor, etc.) can drive end-to-end WhatsApp flows - connect, pair, send, query groups/newsletters, inspect events, walk SQL state - without writing throwaway scripts. Source: [`packages/mcp-server/`](.).
 
 > Built for **development and testing**, not as a production protocol server.
 
@@ -10,7 +10,7 @@ One process can drive **multiple sessions over a single shared store**: every to
 
 Every tool takes an optional **`session`** id (default `MCP_SESSION_ID`); a new id lazily spins up another `WaClient` on the shared store. See [Sessions](#sessions).
 
-- **`call`** / **`inspect`** - walk dotted paths against `client` (the selected session's `WaClient`) or `lib` (the `zapo-js` module namespace, including `proto.*` and helpers like `parsePhoneJid`). `call` invokes functions; `inspect` lists members with origin class.
+- **`call`** / **`inspect`** - walk dotted paths against `client` (the selected session's `WaClient`) or `lib` (the `alya-js` module namespace, including `proto.*` and helpers like `parsePhoneJid`). `call` invokes functions; `inspect` lists members with origin class.
 - **`events`** / **`events_clear`** - per-session ring buffer of every `WaClientEventMap` event (filter by `types` / `since` / `limit` / `drain`; scoped to `session`).
 - **`logs`** / **`logs_clear`** - `BufferedTeeLogger` mirrors every runtime + lib log line into one queryable buffer (also stderr, and JSONL to `MCP_LOG_FILE` if set). Each session's lines are tagged with `context.session`; `logs` accepts a `session` filter.
 - **`lifecycle`** - `status` / `start` / `destroy` for a session's `WaClient`. `status` also returns a summary of every live session.
@@ -21,17 +21,17 @@ The full description, schema, and examples are inlined on each tool - agents sho
 ## Install
 
 ```bash
-npm install @zapo-js/mcp-server
+npm install @alya-js/mcp-server
 ```
 
-Peer deps: `zapo-js`, `@modelcontextprotocol/sdk`. SQLite credential persistence requires `better-sqlite3`.
+Peer deps: `alya-js`, `@modelcontextprotocol/sdk`. SQLite credential persistence requires `better-sqlite3`.
 
 ## Registering with Claude Code
 
 Build, then register at user scope so it works from any cwd:
 
 ```bash
-npm run build --workspace @zapo-js/mcp-server
+npm run build --workspace @alya-js/mcp-server
 claude mcp add zapo --scope user -- node <abs-path>/packages/mcp-server/dist/bin.js
 ```
 
@@ -85,12 +85,12 @@ processes only when you want isolated stores / auth files.
 
 ```bash
 claude mcp add zapo --scope user --transport http http://127.0.0.1:3737/mcp
-npm run dev --workspace @zapo-js/mcp-server
+npm run dev --workspace @alya-js/mcp-server
 ```
 
 The `dev` script runs the server under `scripts/dev-watch.cjs`, which spawns
 `node --import tsx src/bin.ts` on HTTP (port 3737) and respawns it when a
-watched source actually changes. `tsx` resolves `zapo-js` directly from
+watched source actually changes. `tsx` resolves `alya-js` directly from
 `<root>/src/` via `packages/tsconfig.paths.json`, so iterating on the core lib
 needs no rebuild. Edit any `.ts` under `<root>/src`, `<root>/packages` or
 `<root>/spec` → the runner restarts the process and names the file that
@@ -119,7 +119,7 @@ shares the credential store with `test/example.cjs` (no re-pairing).
 **Stdio fallback (manual reconnect):**
 
 ```bash
-npm run build --workspace @zapo-js/mcp-server
+npm run build --workspace @alya-js/mcp-server
 claude mcp add zapo --scope user -- node <abs>/packages/mcp-server/dist/bin.js
 ```
 
@@ -141,7 +141,7 @@ After editing source: rebuild → call `restart` with `mode: "process_exit"` →
 | `MCP_GROUP_BUNDLES`                                                            | `0`                           | Download group-history bundles shared by members      |
 | `MCP_TRANSPORT`                                                                | `stdio`                       | `stdio` or `http` (StreamableHTTPServerTransport)     |
 | `MCP_HTTP_HOST` / `MCP_HTTP_PORT` / `MCP_HTTP_PATH`                            | `127.0.0.1` / `3737` / `/mcp` | HTTP listener config                                  |
-| `MCP_FAKE_NOISE_PUBKEY_HEX` + `MCP_FAKE_NOISE_SERIAL` + `MCP_CHAT_SOCKET_URLS` | unset                         | Point at `@zapo-js/fake-server` for tests             |
+| `MCP_FAKE_NOISE_PUBKEY_HEX` + `MCP_FAKE_NOISE_SERIAL` + `MCP_CHAT_SOCKET_URLS` | unset                         | Point at `@alya-js/fake-server` for tests             |
 
 ## Notes / limits
 
@@ -162,4 +162,4 @@ After editing source: rebuild → call `restart` with `mode: "process_exit"` →
   not respawn it until something changes - under HTTP+watch, just edit a file
   to reload instead.
 
-See the main [`zapo-js`](../../README.md) docs for the `WaClient` API surface.
+See the main [`alya-js`](../../README.md) docs for the `WaClient` API surface.

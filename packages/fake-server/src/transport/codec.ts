@@ -1,7 +1,7 @@
 /**
  * Layer 1 – binary stanza codec wrapper.
  *
- * Re-exports the bit-exact WhatsApp WAP token encoder/decoder from zapo-js.
+ * Re-exports the bit-exact WhatsApp WAP token encoder/decoder from alya-js.
  * This file is the only sanctioned import path for binary node serialization
  * inside the fake server.
  */
@@ -12,5 +12,5 @@ export {
     encodeBinaryNode,
     encodeBinaryNodeStanza,
     verifyNoiseCertificateChain
-} from 'zapo-js/transport'
-export type { BinaryNode, WaNoiseRootCa } from 'zapo-js/transport'
+} from 'alya-js/transport'
+export type { BinaryNode, WaNoiseRootCa } from 'alya-js/transport'

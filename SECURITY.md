@@ -1,6 +1,6 @@
 # Security Policy
 
-`zapo-js` implements end-to-end-encrypted messaging primitives (Signal
+`alya-js` implements end-to-end-encrypted messaging primitives (Signal
 Protocol, Noise XX/IK handshakes, app-state MACs, media encryption). The
 threat model is non-trivial, so we treat security reports differently
 from regular bugs.
@@ -34,7 +34,7 @@ A fix or mitigation timeline follows from there based on severity.
 
 Include in your report:
 
-- Affected version (`zapo-js` and any `@zapo-js/*` packages involved)
+- Affected version (`alya-js` and any `@alya-js/*` packages involved)
 - A minimal reproducer (PoC code, sequence of calls, expected vs actual
   behavior)
 - Impact assessment from your perspective (what does this let an
@@ -76,7 +76,7 @@ Include in your report:
 - Divergences from WhatsApp Web behavior that don't compromise crypto
   (e.g. wrong stanza attribute order, missing parsing of a notification).
 - Parsing bugs that produce wrong-but-non-sensitive output.
-- Issues in optional packages (`@zapo-js/store-*`, `@zapo-js/media-utils`)
+- Issues in optional packages (`@alya-js/store-*`, `@alya-js/media-utils`)
   that don't touch credential storage or encryption keys.
 - Vulnerabilities in `wa-web/` or `wa-mob/` bundles themselves – those
   belong upstream with Meta.

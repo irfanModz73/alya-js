@@ -1,7 +1,7 @@
 import { performance } from 'node:perf_hooks'
 
-import { createNoopLogger, type Logger } from 'zapo-js'
-import { toError } from 'zapo-js/util'
+import { createNoopLogger, type Logger } from 'alya-js'
+import { toError } from 'alya-js/util'
 
 import { type AudioSender, DEFAULT_AUDIO_CONFIG, type WaAudioEngineConfig } from '../types.js'
 

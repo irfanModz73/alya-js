@@ -1,5 +1,5 @@
 import { type Db, MongoClient, type MongoClientOptions } from 'mongodb'
-import type { Logger } from 'zapo-js'
+import type { Logger } from 'alya-js'
 
 import { WaAppStateMongoStore } from './appstate.store'
 import { WaAuthMongoStore } from './auth.store'
@@ -100,8 +100,8 @@ function isDb(value: WaMongoStoreConfig['db']): value is Db {
  *
  * @example
  * ```ts
- * import { createStore, WaClient } from 'zapo-js'
- * import { createMongoStore } from '@zapo-js/store-mongo'
+ * import { createStore, WaClient } from 'alya-js'
+ * import { createMongoStore } from '@alya-js/store-mongo'
  *
  * const store = createStore({
  *     backends: {

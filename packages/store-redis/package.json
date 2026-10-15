@@ -1,7 +1,7 @@
 {
-    "name": "@zapo-js/store-redis",
+    "name": "@alya-js/store-redis",
     "version": "1.3.0",
-    "description": "Redis store provider for zapo-js",
+    "description": "Redis store provider for alya-js",
     "license": "MIT",
     "author": "vinikjkkj <contact@vinicius.email> (https://github.com/vinikjkkj)",
     "repository": {
@@ -32,12 +32,12 @@
         "test": "node --import tsx --test \"src/**/__tests__/**/*.test.ts\""
     },
     "peerDependencies": {
-        "zapo-js": "^1.7.0",
+        "alya-js": "^1.7.0",
         "ioredis": ">=5.0.0"
     },
     "devDependencies": {
         "ioredis": "^5.6.1",
-        "zapo-js": "file:../.."
+        "alya-js": "file:../.."
     },
     "engines": {
         "node": ">=20.9.0"

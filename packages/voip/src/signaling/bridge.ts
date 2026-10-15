@@ -1,7 +1,7 @@
-import { createNoopLogger, type Logger } from 'zapo-js'
-import { normalizeDeviceJid } from 'zapo-js/protocol'
-import { type BinaryNode, buildAckNode, getFirstNodeChild } from 'zapo-js/transport'
-import { toError } from 'zapo-js/util'
+import { createNoopLogger, type Logger } from 'alya-js'
+import { normalizeDeviceJid } from 'alya-js/protocol'
+import { type BinaryNode, buildAckNode, getFirstNodeChild } from 'alya-js/transport'
+import { toError } from 'alya-js/util'
 
 import type { WaCallManager } from '../call/WaCallManager.js'
 import type { WaVoipDeps } from '../types.js'

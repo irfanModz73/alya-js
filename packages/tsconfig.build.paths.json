@@ -2,18 +2,18 @@
     "compilerOptions": {
         "baseUrl": "..",
         "paths": {
-            "zapo-js": ["dist/index.d.ts"],
-            "zapo-js/store": ["dist/store/index.d.ts"],
-            "zapo-js/signal": ["dist/signal/index.d.ts"],
-            "zapo-js/auth": ["dist/auth/index.d.ts"],
-            "zapo-js/appstate": ["dist/appstate/index.d.ts"],
-            "zapo-js/retry": ["dist/retry/index.d.ts"],
-            "zapo-js/proto": ["dist/proto.d.ts"],
-            "zapo-js/protocol": ["dist/protocol/index.d.ts"],
-            "zapo-js/crypto": ["dist/crypto/index.d.ts"],
-            "zapo-js/media": ["dist/media/index.d.ts"],
-            "zapo-js/util": ["dist/util/index.d.ts"],
-            "zapo-js/transport": ["dist/transport/index.d.ts"]
+            "alya-js": ["dist/index.d.ts"],
+            "alya-js/store": ["dist/store/index.d.ts"],
+            "alya-js/signal": ["dist/signal/index.d.ts"],
+            "alya-js/auth": ["dist/auth/index.d.ts"],
+            "alya-js/appstate": ["dist/appstate/index.d.ts"],
+            "alya-js/retry": ["dist/retry/index.d.ts"],
+            "alya-js/proto": ["dist/proto.d.ts"],
+            "alya-js/protocol": ["dist/protocol/index.d.ts"],
+            "alya-js/crypto": ["dist/crypto/index.d.ts"],
+            "alya-js/media": ["dist/media/index.d.ts"],
+            "alya-js/util": ["dist/util/index.d.ts"],
+            "alya-js/transport": ["dist/transport/index.d.ts"]
         }
     }
 }

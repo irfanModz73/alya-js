@@ -5,7 +5,7 @@ import {
     type WaWamEventName,
     type WaWamField
 } from '@vinikjkkj/wa-wam'
-import { toSafeNumber } from 'zapo-js/util'
+import { toSafeNumber } from 'alya-js/util'
 
 import type { WamValueKind } from './wire/encoder.js'
 import type { WamResolvedField } from './wire/WamBatch.js'

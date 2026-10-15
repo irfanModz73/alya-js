@@ -5,8 +5,8 @@ import {
     type SenderKeyRecord,
     type SignalAddress,
     toSignalAddressParts
-} from 'zapo-js/signal'
-import type { WaSenderKeyStore } from 'zapo-js/store'
+} from 'alya-js/signal'
+import type { WaSenderKeyStore } from 'alya-js/store'
 
 import { BaseRedisStore } from './BaseRedisStore'
 import { deleteKeysChunked, scanKeys, toRedisBuffer } from './helpers'

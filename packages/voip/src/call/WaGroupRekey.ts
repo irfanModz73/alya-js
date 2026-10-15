@@ -1,5 +1,5 @@
-import type { Logger } from 'zapo-js'
-import { toError } from 'zapo-js/util'
+import type { Logger } from 'alya-js'
+import { toError } from 'alya-js/util'
 
 import { generateCallKey } from '../crypto/encryption.js'
 import { groupParticipantAccountKey } from '../jid.js'

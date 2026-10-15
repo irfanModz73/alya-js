@@ -1,27 +1,27 @@
-# @zapo-js/voip-media
+# @alya-js/voip-media
 
 The media plane of a WhatsApp call: the relay transport, STUN, SRTP, RTP/RTCP, H.264
 packetization, the app-data stream and the MLow codec.
 
-It has no dependency on `zapo-js`. The signaling of a call stays on the server with
-[`@zapo-js/voip`](../voip); only the media needs to live wherever the audio is, and a browser that
-carries a call's media installs this package and the codec, without `zapo-js`.
+It has no dependency on `alya-js`. The signaling of a call stays on the server with
+[`@alya-js/voip`](../voip); only the media needs to live wherever the audio is, and a browser that
+carries a call's media installs this package and the codec, without `alya-js`.
 
 | Entry                      | Runs in       | Holds                                                                                                               |
 | -------------------------- | ------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `@zapo-js/voip-media`      | Node, browser | the media plane itself; everything host-specific is injected                                                        |
-| `@zapo-js/voip-media/node` | Node          | `node:crypto`, `RTCPeerConnection` on `@roamhq/wrtc`, raw UDP legs                                                  |
-| `@zapo-js/voip-media/web`  | browser       | the primitives in plain JavaScript, the browser's `RTCPeerConnection`, audio on an AudioWorklet, video on WebCodecs |
+| `@alya-js/voip-media`      | Node, browser | the media plane itself; everything host-specific is injected                                                        |
+| `@alya-js/voip-media/node` | Node          | `node:crypto`, `RTCPeerConnection` on `@roamhq/wrtc`, raw UDP legs                                                  |
+| `@alya-js/voip-media/web`  | browser       | the primitives in plain JavaScript, the browser's `RTCPeerConnection`, audio on an AudioWorklet, video on WebCodecs |
 
 The core never imports either host, and the two hosts never import each other.
 
 ## Install
 
 ```bash
-npm install @zapo-js/voip-media libmlow-wasm-fork
+npm install @alya-js/voip-media libmlow-wasm-fork
 ```
 
-`libmlow-wasm-fork` is the codec, a fork of `libmlow-wasm` whose browser build carries no Node-only import, so a bundler takes it as it is. The WASM is embedded in the module, so there is no separate `.wasm` file to serve, and it is only downloaded when a call starts. It is an optional peer, so `@zapo-js/voip` installed for signaling alone does not pull it in.
+`libmlow-wasm-fork` is the codec, a fork of `libmlow-wasm` whose browser build carries no Node-only import, so a bundler takes it as it is. The WASM is embedded in the module, so there is no separate `.wasm` file to serve, and it is only downloaded when a call starts. It is an optional peer, so `@alya-js/voip` installed for signaling alone does not pull it in.
 
 ## Carrying a call's media
 
@@ -29,8 +29,8 @@ npm install @zapo-js/voip-media libmlow-wasm-fork
 there arrives as a plan, and what signaling needs from here leaves as events.
 
 ```ts
-import { WaCallMediaPlane } from '@zapo-js/voip-media'
-import { webMediaHost } from '@zapo-js/voip-media/web' // or nodeMediaHost from '/node'
+import { WaCallMediaPlane } from '@alya-js/voip-media'
+import { webMediaHost } from '@alya-js/voip-media/web' // or nodeMediaHost from '/node'
 
 const plane = new WaCallMediaPlane({
     ...webMediaHost,
@@ -123,7 +123,7 @@ const plane = new WaCallMediaPlane({
 starve the call.
 
 ```ts
-import { WaWebCallAudio } from '@zapo-js/voip-media/web'
+import { WaWebCallAudio } from '@alya-js/voip-media/web'
 
 // From the click that answers or dials: it asks for the microphone.
 const audio = await WaWebCallAudio.start(plane)
@@ -185,7 +185,7 @@ The plane carries H.264 access units; the browser's WebCodecs makes and shows th
 `WaWebCallVideoReceiver` decodes the peer's frames as the plane reassembles them.
 
 ```ts
-import { WaWebCallVideoReceiver, WaWebCallVideoSender } from '@zapo-js/voip-media/web'
+import { WaWebCallVideoReceiver, WaWebCallVideoSender } from '@alya-js/voip-media/web'
 
 const video = new WaWebCallVideoReceiver({
     onFrame: (frame, ssrc) => {
@@ -236,7 +236,7 @@ ready-made ones.
 | `crypto`               | AES-128-CTR, HMAC-SHA1 in JavaScript | `node:crypto`                           |
 | `createPeerConnection` | the browser's `RTCPeerConnection`    | `@roamhq/wrtc`, loaded on the first leg |
 | `createRawUdpLeg`      | not available                        | `WaRawUdpLeg` on `node:dgram`, opt-in   |
-| `logger`               | any object with the methods          | a `zapo-js` `Logger` as it is           |
+| `logger`               | any object with the methods          | a `alya-js` `Logger` as it is           |
 
 A browser gets the primitives in JavaScript because WebCrypto only offers them as promises, and
 SRTP protects and verifies packet by packet on a path that cannot wait for one. The tests hold both

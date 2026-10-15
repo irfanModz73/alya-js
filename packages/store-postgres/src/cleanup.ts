@@ -4,7 +4,7 @@ import type {
     WaGroupMetadataStore,
     WaMessageSecretStore,
     WaRetryStore
-} from 'zapo-js/store'
+} from 'alya-js/store'
 
 export interface PgCleanupPollerOptions {
     readonly intervalMs?: number

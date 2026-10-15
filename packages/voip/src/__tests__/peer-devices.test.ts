@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
 
-import { createNoopLogger } from 'zapo-js'
+import { createNoopLogger } from 'alya-js'
 
 import { resolveOfferParticipantDevices, resolvePeerLid } from '../peer-devices.js'
 import type { WaVoipDeps } from '../types.js'

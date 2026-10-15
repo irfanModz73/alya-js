@@ -1,4 +1,4 @@
-import type { WaPrivacyTokenStore, WaStoredPrivacyTokenRecord } from 'zapo-js/store'
+import type { WaPrivacyTokenStore, WaStoredPrivacyTokenRecord } from 'alya-js/store'
 
 import { BaseMysqlStore } from './BaseMysqlStore'
 import { affectedRows, queryFirst, toBytesOrNull } from './helpers'

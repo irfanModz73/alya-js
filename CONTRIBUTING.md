@@ -89,7 +89,7 @@ session - the example replies with `pong`. Auth state is persisted in
 - Incoming parsers/normalizers in `src/client/events/`, with coordinators
   handling orchestration only
 - Typed store contracts in `src/store/contracts/`; persistent + cache
-  providers live under `@zapo-js/store-*` packages
+  providers live under `@alya-js/store-*` packages
 - Protocol constants in `src/protocol/` using `Object.freeze({...} as const)`
 
 ### Engineering conventions
@@ -133,7 +133,7 @@ Every push to `master` and every PR run
 
 - `lint`, `format`, `typecheck` over core
 - `build-core` (CJS + ESM + types)
-- `typecheck-packages` across every `@zapo-js/*` workspace
+- `typecheck-packages` across every `@alya-js/*` workspace
 - per-provider test jobs: `test-core`, `test-fake-server`,
   `test-media-utils`, `test-sqlite`, `test-mcp-server`, `test-mysql`,
   `test-postgres`, `test-redis`, `test-mongo`

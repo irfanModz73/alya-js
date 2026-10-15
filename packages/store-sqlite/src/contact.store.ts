@@ -1,6 +1,6 @@
-import { isUserJid } from 'zapo-js'
-import type { WaContactStore as Contract, WaStoredContactRecord } from 'zapo-js/store'
-import { asNumber, asOptionalString, asString } from 'zapo-js/util'
+import { isUserJid } from 'alya-js'
+import type { WaContactStore as Contract, WaStoredContactRecord } from 'alya-js/store'
+import { asNumber, asOptionalString, asString } from 'alya-js/util'
 
 import { BaseSqliteStore } from './BaseSqliteStore'
 import type { WaSqliteConnection } from './connection'

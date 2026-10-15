@@ -1,6 +1,6 @@
 import type { Pool, PoolClient } from 'pg'
-import type { Logger } from 'zapo-js'
-import { resolvePositive } from 'zapo-js/util'
+import type { Logger } from 'alya-js'
+import { resolvePositive } from 'alya-js/util'
 
 import { ensurePgMigrations } from './connection'
 import { assertSafeTablePrefix } from './helpers'

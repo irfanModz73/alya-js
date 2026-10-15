@@ -2,7 +2,7 @@
  * Child-process entry point for the fake server. Spawned by
  * `messaging.bench.ts` when `--separate-process` is passed. Runs the
  * entire fake-server + FakePeer stack in its own V8 isolate so CPU
- * profiles captured by the parent only contain zapo-js lib code.
+ * profiles captured by the parent only contain alya-js lib code.
  *
  * Communicates with the parent via `process.send` / `process.on('message')`
  * using a simple JSON-RPC-ish protocol (no batching, strict request/

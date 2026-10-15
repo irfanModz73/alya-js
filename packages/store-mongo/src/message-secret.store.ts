@@ -1,5 +1,5 @@
 import type { Binary } from 'mongodb'
-import type { WaMessageSecretEntry, WaMessageSecretStore } from 'zapo-js/store'
+import type { WaMessageSecretEntry, WaMessageSecretStore } from 'alya-js/store'
 
 import { BaseMongoStore } from './BaseMongoStore'
 import { fromBinary, toBinary } from './helpers'

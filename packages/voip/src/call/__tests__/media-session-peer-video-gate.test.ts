@@ -1,15 +1,15 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
 
-import { createNoopLogger, type Logger } from 'zapo-js'
-import type { BinaryNode } from 'zapo-js/transport'
+import { createNoopLogger, type Logger } from 'alya-js'
+import type { BinaryNode } from 'alya-js/transport'
 
 import {
     type WaCallMediaMessage,
     WaCallMediaPlane,
     type WaCallMediaPlanUpdate
-} from '@zapo-js/voip-media'
-import { nodeMediaHost } from '@zapo-js/voip-media/node'
+} from '@alya-js/voip-media'
+import { nodeMediaHost } from '@alya-js/voip-media/node'
 
 import { readUInt32BE } from '../../bytes.js'
 import { WA_VIDEO_STATE, WA_VIDEO_UPGRADE_RESULT } from '../../signaling/video-state.js'

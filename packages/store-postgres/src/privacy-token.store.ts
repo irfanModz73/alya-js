@@ -1,4 +1,4 @@
-import type { WaPrivacyTokenStore, WaStoredPrivacyTokenRecord } from 'zapo-js/store'
+import type { WaPrivacyTokenStore, WaStoredPrivacyTokenRecord } from 'alya-js/store'
 
 import { BasePgStore } from './BasePgStore'
 import { affectedRows, queryFirst, toBytesOrNull } from './helpers'

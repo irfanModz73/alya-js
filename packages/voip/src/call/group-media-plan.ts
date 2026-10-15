@@ -6,7 +6,7 @@ import {
     type WaCallMediaSender,
     type WaCallMediaStreamLayer,
     type WaCallMediaVideoSubscription
-} from '@zapo-js/voip-media'
+} from '@alya-js/voip-media'
 
 import { derivePerJidSrtpKey } from '../crypto/encryption.js'
 import { generateSecureSsrc, WA_SSRC_SLOT } from '../crypto/ssrc.js'

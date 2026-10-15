@@ -2,18 +2,18 @@
     "compilerOptions": {
         "baseUrl": "..",
         "paths": {
-            "zapo-js": ["src/index.ts"],
-            "zapo-js/store": ["src/store/index.ts"],
-            "zapo-js/signal": ["src/signal/index.ts"],
-            "zapo-js/auth": ["src/auth/index.ts"],
-            "zapo-js/appstate": ["src/appstate/index.ts"],
-            "zapo-js/retry": ["src/retry/index.ts"],
-            "zapo-js/proto": ["src/proto.ts"],
-            "zapo-js/protocol": ["src/protocol/index.ts"],
-            "zapo-js/crypto": ["src/crypto/index.ts"],
-            "zapo-js/media": ["src/media/index.ts"],
-            "zapo-js/util": ["src/util/index.ts"],
-            "zapo-js/transport": ["src/transport/index.ts"],
+            "alya-js": ["src/index.ts"],
+            "alya-js/store": ["src/store/index.ts"],
+            "alya-js/signal": ["src/signal/index.ts"],
+            "alya-js/auth": ["src/auth/index.ts"],
+            "alya-js/appstate": ["src/appstate/index.ts"],
+            "alya-js/retry": ["src/retry/index.ts"],
+            "alya-js/proto": ["src/proto.ts"],
+            "alya-js/protocol": ["src/protocol/index.ts"],
+            "alya-js/crypto": ["src/crypto/index.ts"],
+            "alya-js/media": ["src/media/index.ts"],
+            "alya-js/util": ["src/util/index.ts"],
+            "alya-js/transport": ["src/transport/index.ts"],
             "@abprops-spec": ["src/abprops-spec.ts"],
             "@appstate": ["src/appstate/index.ts"],
             "@appstate/*": ["src/appstate/*"],
@@ -43,9 +43,9 @@
             "@transport/*": ["src/transport/*"],
             "@util/*": ["src/util/*"],
             "@version-spec": ["src/version-spec.ts"],
-            "@zapo-js/voip-media/node": ["packages/voip-media/src/node/index.ts"],
-            "@zapo-js/voip-media/web": ["packages/voip-media/src/web/index.ts"],
-            "@zapo-js/*": ["packages/*/src/index.ts"]
+            "@alya-js/voip-media/node": ["packages/voip-media/src/node/index.ts"],
+            "@alya-js/voip-media/web": ["packages/voip-media/src/web/index.ts"],
+            "@alya-js/*": ["packages/*/src/index.ts"]
         }
     }
 }

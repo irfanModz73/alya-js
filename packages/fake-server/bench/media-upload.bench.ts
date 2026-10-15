@@ -183,7 +183,7 @@ async function main(): Promise<void> {
     const backendName = process.env.ZAPO_BENCH_STORE ?? 'memory'
     const separate = argSet.has('--separate-process')
 
-    console.log('zapo-js media-upload bench')
+    console.log('alya-js media-upload bench')
     console.log('──────────────────────────')
     console.log(`  uploads per size  : ${uploads}`)
     console.log(`  sizes (bytes)     : ${sizes.map((s) => formatMiB(s)).join(', ')}`)

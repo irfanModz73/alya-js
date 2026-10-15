@@ -1,4 +1,4 @@
-import { defineWaClientPlugin } from 'zapo-js'
+import { defineWaClientPlugin } from 'alya-js'
 
 import { WaWamCoordinator, type WaWamCoordinatorOptions } from './WaWamCoordinator.js'
 
@@ -12,8 +12,8 @@ export interface WamPluginOptions extends WaWamCoordinatorOptions {}
  *
  * @example
  * ```ts
- * import { WaClient } from 'zapo-js'
- * import { wamPlugin } from '@zapo-js/wam'
+ * import { WaClient } from 'alya-js'
+ * import { wamPlugin } from '@alya-js/wam'
  *
  * const client = new WaClient({
  *   store,
@@ -26,7 +26,7 @@ export interface WamPluginOptions extends WaWamCoordinatorOptions {}
  */
 export function wamPlugin(options: WamPluginOptions = {}) {
     return defineWaClientPlugin<'wam', WaWamCoordinator>({
-        id: '@zapo-js/wam',
+        id: '@alya-js/wam',
         exposeAs: 'wam',
         setup(ctx) {
             return new WaWamCoordinator(ctx, options)

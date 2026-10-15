@@ -1,13 +1,13 @@
 import type { Binary } from 'mongodb'
-import { signalAddressKey } from 'zapo-js/protocol'
+import { signalAddressKey } from 'alya-js/protocol'
 import {
     decodeSignalSessionRecord,
     encodeSignalSessionRecord,
     type SignalAddress,
     type SignalSessionRecord,
     toSignalAddressParts
-} from 'zapo-js/signal'
-import type { WaSessionStore } from 'zapo-js/store'
+} from 'alya-js/signal'
+import type { WaSessionStore } from 'alya-js/store'
 
 import { BaseMongoStore } from './BaseMongoStore'
 import { fromBinary, toBinary } from './helpers'

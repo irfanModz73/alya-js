@@ -1,5 +1,5 @@
 import type { PoolClient } from 'pg'
-import type { WaMessageStore, WaStoredMessageRecord } from 'zapo-js/store'
+import type { WaMessageStore, WaStoredMessageRecord } from 'alya-js/store'
 
 import { BasePgStore } from './BasePgStore'
 import {

@@ -7,12 +7,12 @@ import {
     keyEpoch,
     type WaAppStateStoreData,
     type WaAppStateSyncKey
-} from 'zapo-js/appstate'
+} from 'alya-js/appstate'
 import type {
     WaAppStateCollectionStateUpdate,
     WaAppStateCollectionStoreState,
     WaAppStateStore
-} from 'zapo-js/store'
+} from 'alya-js/store'
 
 import { BaseMysqlStore } from './BaseMysqlStore'
 import {

@@ -5,7 +5,7 @@ import {
     toBytesView,
     uint8Equal,
     uint8TimingSafeEqual
-} from 'zapo-js/util'
+} from 'alya-js/util'
 
 export function toBinary(bytes: Uint8Array): Binary {
     return new Binary(bytes)

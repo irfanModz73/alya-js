@@ -8,7 +8,7 @@ import type { WaAuthStore } from '@store/contracts/auth.store'
  * @sensitive Holds private key material from {@link WaAuthCredentials} in
  * RAM. Never log instances, never `JSON.stringify`. Pairing credentials are
  * lost when the process exits, so the next connect will re-pair from scratch
- * (QR/link-code). Prefer a persistent backend (e.g. `@zapo-js/store-sqlite`)
+ * (QR/link-code). Prefer a persistent backend (e.g. `@alya-js/store-sqlite`)
  * for production.
  */
 export class WaAuthMemoryStore implements WaAuthStore {

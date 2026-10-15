@@ -1,4 +1,4 @@
-import type { WaDeviceListSnapshot, WaDeviceListStore } from 'zapo-js/store'
+import type { WaDeviceListSnapshot, WaDeviceListStore } from 'alya-js/store'
 
 import { BaseMongoStore } from './BaseMongoStore'
 import type { WaMongoStorageOptions } from './types'

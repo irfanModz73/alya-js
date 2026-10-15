@@ -1,7 +1,7 @@
 {
-    "name": "@zapo-js/wam",
+    "name": "@alya-js/wam",
     "version": "0.1.1",
-    "description": "WhatsApp Web WAM (analytics/telemetry) plugin for zapo-js — emits the client-side metrics batches WA Web sends, for wire parity and anti-fingerprinting",
+    "description": "WhatsApp Web WAM (analytics/telemetry) plugin for alya-js — emits the client-side metrics batches WA Web sends, for wire parity and anti-fingerprinting",
     "license": "MIT",
     "author": "vinikjkkj <contact@vinicius.email> (https://github.com/vinikjkkj)",
     "repository": {
@@ -36,10 +36,10 @@
         "@vinikjkkj/wa-wam": "2.3000.1041713829-1ec0d3b"
     },
     "peerDependencies": {
-        "zapo-js": "^1.5.0"
+        "alya-js": "^1.5.0"
     },
     "devDependencies": {
-        "zapo-js": "file:../.."
+        "alya-js": "file:../.."
     },
     "engines": {
         "node": ">=20.9.0"

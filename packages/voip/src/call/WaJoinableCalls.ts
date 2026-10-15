@@ -1,6 +1,6 @@
-import type { Logger } from 'zapo-js'
-import type { BinaryNode } from 'zapo-js/transport'
-import { setBoundedMapEntry, toError } from 'zapo-js/util'
+import type { Logger } from 'alya-js'
+import type { BinaryNode } from 'alya-js/transport'
+import { setBoundedMapEntry, toError } from 'alya-js/util'
 
 import { parseRelayFromAck } from '../relay/relay-ack.js'
 import { readGroupCallRoster, readGroupUpdateTransactionId } from '../signaling/group-info.js'

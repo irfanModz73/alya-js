@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 
-import type { WaClient, WaClientEventMap } from 'zapo-js'
+import type { WaClient, WaClientEventMap } from 'alya-js'
 
 import { FakeWaServer, type WaFakeConnectionPipeline } from '../api/FakeWaServer'
 import { parsePairingQrString } from '../protocol/auth/pair-device'

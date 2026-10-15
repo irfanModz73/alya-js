@@ -1,5 +1,5 @@
-import * as ZapoLib from 'zapo-js'
-import { toError } from 'zapo-js/util'
+import * as ZapoLib from 'alya-js'
+import { toError } from 'alya-js/util'
 
 import type { McpRuntime } from './runtime'
 import { decodeFromJson, encodeForJson } from './serializer'
@@ -21,7 +21,7 @@ const resolveRoot = async (
     session?: string
 ): Promise<{ readonly object: Record<string, unknown>; readonly label: string }> => {
     if (root === 'lib') {
-        return { object: ZapoLib as unknown as Record<string, unknown>, label: 'zapo-js' }
+        return { object: ZapoLib as unknown as Record<string, unknown>, label: 'alya-js' }
     }
     const client = await runtime.ensureClient(session)
     return { object: client as unknown as Record<string, unknown>, label: 'WaClient' }
@@ -63,7 +63,7 @@ const callTool: ToolDefinition = {
     name: 'call',
     description:
         'Resolve a dotted path on a root object and either return the value or call it as a function with the given args. ' +
-        'Roots: "client" (default) = WaClient instance; "lib" = the zapo-js module namespace ' +
+        'Roots: "client" (default) = WaClient instance; "lib" = the alya-js module namespace ' +
         '(pure helpers like parsePhoneJid/isGroupJid/normalizeRecipientJid, the WA_* constants, the proto namespace at "proto.*", and createStore). ' +
         'Examples: { path: "connect" } -> client.connect(); { path: "group.create", args: [...] } -> client.group.create(...); ' +
         '{ root: "lib", path: "parsePhoneJid", args: ["+5511999999999"] }; ' +
@@ -79,7 +79,7 @@ const callTool: ToolDefinition = {
                 type: 'string',
                 enum: ['client', 'lib'],
                 description:
-                    '"client" (default) walks WaClient instance; "lib" walks the zapo-js module namespace (no client init needed).'
+                    '"client" (default) walks WaClient instance; "lib" walks the alya-js module namespace (no client init needed).'
             },
             path: {
                 type: 'string',
@@ -156,7 +156,7 @@ const inspectTool: ToolDefinition = {
     name: 'inspect',
     description:
         'List the properties and methods reachable at a path on the chosen root. ' +
-        'Roots: "client" (default) = WaClient instance + coordinators; "lib" = the zapo-js module namespace ' +
+        'Roots: "client" (default) = WaClient instance + coordinators; "lib" = the alya-js module namespace ' +
         '(use { root: "lib" } to see exported helpers, WA_* constants, "proto", "createStore", etc.). ' +
         'Returns own + inherited members up to (but excluding) Object.prototype, with origin class name.',
     inputSchema: {
@@ -166,7 +166,7 @@ const inspectTool: ToolDefinition = {
                 type: 'string',
                 enum: ['client', 'lib'],
                 description:
-                    '"client" (default) inspects WaClient; "lib" inspects the zapo-js module namespace.'
+                    '"client" (default) inspects WaClient; "lib" inspects the alya-js module namespace.'
             },
             path: {
                 type: 'string',
@@ -489,7 +489,7 @@ const evalTool: ToolDefinition = {
     name: 'eval',
     description:
         'Execute arbitrary JS in the MCP runtime with `client` (the WaClient for the selected ' +
-        '`session`, default session when omitted) and `lib` (zapo-js module namespace) in ' +
+        '`session`, default session when omitted) and `lib` (alya-js module namespace) in ' +
         'scope. **Disabled by default**: requires ' +
         '`MCP_EVAL_ENABLED=1` in the MCP process env, otherwise every call is rejected. ' +
         'The source is wrapped in an async function – top-level `await` works. ' +

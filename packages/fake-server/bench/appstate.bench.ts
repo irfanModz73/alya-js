@@ -24,7 +24,7 @@
 
 import { randomBytes } from 'node:crypto'
 
-import type { WaClient, WaClientEventMap } from 'zapo-js'
+import type { WaClient, WaClientEventMap } from 'alya-js'
 
 import { buildExternalBlobReference } from '../src/protocol/iq/appstate-sync'
 import { FakeAppStateCollection } from '../src/state/fake-app-state-collection'
@@ -412,7 +412,7 @@ async function main(): Promise<void> {
     const backendName = process.env.ZAPO_BENCH_STORE ?? 'memory'
     const separate = argSet.has('--separate-process')
 
-    console.log('zapo-js appstate bench')
+    console.log('alya-js appstate bench')
     console.log('──────────────────────')
     console.log(`  outgoing patches  : ${outgoingOps}`)
     console.log(`  incoming mutations: ${incomingOps}`)

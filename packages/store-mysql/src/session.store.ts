@@ -1,5 +1,5 @@
 import type { PoolConnection } from 'mysql2/promise'
-import { signalAddressKey } from 'zapo-js/protocol'
+import { signalAddressKey } from 'alya-js/protocol'
 import {
     decodeSignalSessionRecord,
     encodeSignalSessionRecord,
@@ -7,8 +7,8 @@ import {
     type SignalAddressParts,
     type SignalSessionRecord,
     toSignalAddressParts
-} from 'zapo-js/signal'
-import type { WaSessionStore } from 'zapo-js/store'
+} from 'alya-js/signal'
+import type { WaSessionStore } from 'alya-js/store'
 
 import { BaseMysqlStore } from './BaseMysqlStore'
 import { queryFirst, queryRows, toBytes } from './helpers'

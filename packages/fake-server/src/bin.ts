@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-/** Standalone CLI for `@zapo-js/fake-server`. */
+/** Standalone CLI for `@alya-js/fake-server`. */
 
 import { createInterface } from 'node:readline'
 
@@ -85,10 +85,10 @@ function parseArgs(argv: readonly string[]): CliArgs {
 }
 
 function printHelp(): void {
-    process.stdout.write(`@zapo-js/fake-server – standalone fake WhatsApp Web server
+    process.stdout.write(`@alya-js/fake-server – standalone fake WhatsApp Web server
 
 USAGE
-  npx @zapo-js/fake-server [flags]
+  npx @alya-js/fake-server [flags]
 
 FLAGS
   --host <host>       Bind host (default: 127.0.0.1)
@@ -277,7 +277,7 @@ async function main(): Promise<void> {
             const banner = [
                 '',
                 '┌─────────────────────────────────────────────────────────────',
-                '│ @zapo-js/fake-server is up',
+                '│ @alya-js/fake-server is up',
                 '├─────────────────────────────────────────────────────────────',
                 `│ url            ${server.url}`,
                 `│ host           ${server.host}`,

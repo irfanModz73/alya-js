@@ -1,4 +1,4 @@
-import type { WaPrivacyTokenStore, WaStoredPrivacyTokenRecord } from 'zapo-js/store'
+import type { WaPrivacyTokenStore, WaStoredPrivacyTokenRecord } from 'alya-js/store'
 
 import { BaseRedisStore } from './BaseRedisStore'
 import { scanKeys, toBytesOrNull, toRedisBuffer, toStringOrNull } from './helpers'

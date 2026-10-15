@@ -1,6 +1,6 @@
-import type { WaAuthCredentials } from 'zapo-js/auth'
-import { proto } from 'zapo-js/proto'
-import type { WaAuthStore } from 'zapo-js/store'
+import type { WaAuthCredentials } from 'alya-js/auth'
+import { proto } from 'alya-js/proto'
+import type { WaAuthStore } from 'alya-js/store'
 
 import { BaseMysqlStore } from './BaseMysqlStore'
 import { queryFirst, toBytes, toBytesOrNull } from './helpers'

@@ -6,13 +6,13 @@ import { join } from 'node:path'
 import { Readable } from 'node:stream'
 import { pipeline } from 'node:stream/promises'
 
-import type { Logger } from 'zapo-js'
+import type { Logger } from 'alya-js'
 import type {
     WaMediaProcessorImageResult,
     WaMediaProcessorInput,
     WaMediaProcessorProbeResult,
     WaMediaProcessorWaveformResult
-} from 'zapo-js/media'
+} from 'alya-js/media'
 
 import { generateImageThumbnail } from './sharp'
 

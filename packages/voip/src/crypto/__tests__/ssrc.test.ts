@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
 
-import { hkdf } from 'zapo-js/crypto'
+import { hkdf } from 'alya-js/crypto'
 
 import { readUInt32LE, TEXT_ENCODER } from '../../bytes.js'
 import {

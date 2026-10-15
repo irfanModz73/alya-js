@@ -1,5 +1,5 @@
 import type { Pool, PoolOptions } from 'mysql2/promise'
-import type { Logger } from 'zapo-js'
+import type { Logger } from 'alya-js'
 
 export type MysqlParam = string | number | bigint | Uint8Array | boolean | null
 

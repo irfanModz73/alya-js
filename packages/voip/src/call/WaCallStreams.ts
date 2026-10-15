@@ -1,8 +1,8 @@
-import type { Logger } from 'zapo-js'
-import { toUserJid } from 'zapo-js/protocol'
-import { toError } from 'zapo-js/util'
+import type { Logger } from 'alya-js'
+import { toUserJid } from 'alya-js/protocol'
+import { toError } from 'alya-js/util'
 
-import type { WaCallMediaKeys, WaCallMediaSsrcs } from '@zapo-js/voip-media'
+import type { WaCallMediaKeys, WaCallMediaSsrcs } from '@alya-js/voip-media'
 
 import { WA_AUDIO_CALL_SSRC_SLOTS, WA_SSRC_SLOT, WA_VIDEO_CALL_SSRC_SLOTS } from '../crypto/ssrc.js'
 import { relayListedDeviceJid, toDeviceJid } from '../jid.js'

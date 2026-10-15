@@ -1,4 +1,4 @@
-import type { WaChatMetadataSnapshot, WaChatMetadataStore } from 'zapo-js/store'
+import type { WaChatMetadataSnapshot, WaChatMetadataStore } from 'alya-js/store'
 
 import { BasePgStore } from './BasePgStore'
 import { queryFirst } from './helpers'

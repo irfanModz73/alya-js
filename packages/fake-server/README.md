@@ -1,6 +1,6 @@
-# @zapo-js/fake-server
+# @alya-js/fake-server
 
-In-process fake WhatsApp server that drives the real `zapo-js` `WaClient` end-to-end - full Noise XX/IK handshake, QR pairing, Signal Protocol (X3DH + Double Ratchet), SenderKey for groups, media upload/download over self-signed HTTPS, app-state sync - all without touching WhatsApp servers.
+In-process fake WhatsApp server that drives the real `alya-js` `WaClient` end-to-end - full Noise XX/IK handshake, QR pairing, Signal Protocol (X3DH + Double Ratchet), SenderKey for groups, media upload/download over self-signed HTTPS, app-state sync - all without touching WhatsApp servers.
 
 It serves both transports: companions over WebSocket, and phones over the
 mobile TCP transport, including the companion-hosting side of a primary
@@ -9,16 +9,16 @@ mobile TCP transport, including the companion-hosting side of a primary
 ## Install
 
 ```bash
-npm i -D @zapo-js/fake-server zapo-js
+npm i -D @alya-js/fake-server alya-js
 ```
 
-`zapo-js` is a peer dependency - the fake server reuses the core's binary codec, crypto, and protos. Everything below works from any project; nothing requires this monorepo.
+`alya-js` is a peer dependency - the fake server reuses the core's binary codec, crypto, and protos. Everything below works from any project; nothing requires this monorepo.
 
 ## Quick start
 
 ```ts
-import { FakeWaServer } from '@zapo-js/fake-server'
-import { createStore, WaClient } from 'zapo-js'
+import { FakeWaServer } from '@alya-js/fake-server'
+import { createStore, WaClient } from 'alya-js'
 
 const server = await FakeWaServer.start()
 const client = new WaClient({
@@ -64,7 +64,7 @@ src/
 ├── state/                   # State stores
 │   ├── fake-media-store.ts  # In-memory media blob store
 │   └── fake-app-state-collection.ts  # App-state patch/snapshot provider
-├── transport/               # Re-exports from zapo-js (codec, crypto, protos)
+├── transport/               # Re-exports from alya-js (codec, crypto, protos)
 └── __tests__/               # Cross-check test suite
     └── helpers/             # Shared test utilities (zapo-client factory)
 
@@ -237,7 +237,7 @@ Every outbound IQ the lib sends during normal operation is handled:
 | `newsletter` get `<my_addons>`                                                   | `newsletter-my-addons`        | Ack                                       |
 | `urn:xmpp:whatsapp:dirty` set                                                    | `dirty-bits-clear`            | Captures cleared bits                     |
 
-## Using with non-zapo-js clients
+## Using with non-alya-js clients
 
 The fake server speaks the real wire protocol, so other WhatsApp Web libraries (Baileys forks, whatsmeow, ...) can connect to it too. The recipe:
 
@@ -251,7 +251,7 @@ The fake server speaks the real wire protocol, so other WhatsApp Web libraries (
 
 ```bash
 # Default: 1000 contacts × 2 devices, 4 groups × 500 members, 1000 msgs/scenario
-npm --workspace=@zapo-js/fake-server run bench:messaging
+npm --workspace=@alya-js/fake-server run bench:messaging
 
 # With CPU + heap profiling (separate process for clean lib-only profiles)
 node --expose-gc --import tsx packages/fake-server/bench/messaging.bench.ts \
@@ -293,7 +293,7 @@ The package ships a `fake-wa-server` bin, so the standalone server works from an
 
 ```bash
 # One-off via npx
-npx @zapo-js/fake-server --port 5222 --peer 5511888@s.whatsapp.net --log
+npx @alya-js/fake-server --port 5222 --peer 5511888@s.whatsapp.net --log
 
 # Installed as a dev dependency
 npx fake-wa-server --port 5222 --peer 5511888@s.whatsapp.net --log
@@ -308,7 +308,7 @@ npx fake-wa-server --json
 From inside this monorepo (runs the source, no build needed):
 
 ```bash
-npm --workspace=@zapo-js/fake-server run cli -- --port 5222 --peer 5511888@s.whatsapp.net --log
+npm --workspace=@alya-js/fake-server run cli -- --port 5222 --peer 5511888@s.whatsapp.net --log
 ```
 
 Run with `--help` for the full flag list.
@@ -316,7 +316,7 @@ Run with `--help` for the full flag list.
 ## Test suite
 
 ```bash
-npm --workspace=@zapo-js/fake-server test
+npm --workspace=@alya-js/fake-server test
 # 164 tests, --test-concurrency=1
 ```
 

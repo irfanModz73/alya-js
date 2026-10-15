@@ -1,7 +1,7 @@
 import { execFile, spawn } from 'node:child_process'
 import { access } from 'node:fs/promises'
 
-import { toBytesView } from 'zapo-js/util'
+import { toBytesView } from 'alya-js/util'
 
 import { concatBytes, TEXT_DECODER } from '../bytes.js'
 

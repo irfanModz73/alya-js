@@ -1,6 +1,6 @@
-import type { Logger } from 'zapo-js'
+import type { Logger } from 'alya-js'
 
-import { WA_VIDEO_QUALITY, type WaCallMediaVideoSubscription } from '@zapo-js/voip-media'
+import { WA_VIDEO_QUALITY, type WaCallMediaVideoSubscription } from '@alya-js/voip-media'
 
 import { WA_VIDEO_STATE } from '../signaling/video-state.js'
 import type { CallVideoSubscription } from '../types.js'

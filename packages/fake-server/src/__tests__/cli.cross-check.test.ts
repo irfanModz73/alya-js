@@ -3,8 +3,8 @@ import { type ChildProcessWithoutNullStreams, spawn } from 'node:child_process'
 import { resolve as resolvePath } from 'node:path'
 import test from 'node:test'
 
-import { createNoopLogger, createStore, WaClient, type WaClientEventMap } from 'zapo-js'
-import { hexToBytes } from 'zapo-js/util'
+import { createNoopLogger, createStore, WaClient, type WaClientEventMap } from 'alya-js'
+import { hexToBytes } from 'alya-js/util'
 
 const CLI_ENTRY = resolvePath(__dirname, '../bin.ts')
 const PACKAGE_ROOT = resolvePath(__dirname, '../..')
@@ -188,7 +188,7 @@ test('cli banner shows pair mode off by default', async () => {
     const cli = startCli([])
     try {
         const stdout = await cli.waitForStdout(
-            (value) => value.includes('@zapo-js/fake-server is up'),
+            (value) => value.includes('@alya-js/fake-server is up'),
             'startup banner'
         )
         assert.ok(stdout.includes('pair mode      (off'))

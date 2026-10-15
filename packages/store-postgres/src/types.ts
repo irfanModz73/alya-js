@@ -1,5 +1,5 @@
 import type { Pool, PoolConfig } from 'pg'
-import type { Logger } from 'zapo-js'
+import type { Logger } from 'alya-js'
 
 export type PgParam = string | number | bigint | Uint8Array | boolean | null
 

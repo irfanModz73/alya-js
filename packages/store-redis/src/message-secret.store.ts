@@ -1,4 +1,4 @@
-import type { WaMessageSecretEntry, WaMessageSecretStore } from 'zapo-js/store'
+import type { WaMessageSecretEntry, WaMessageSecretStore } from 'alya-js/store'
 
 import { BaseRedisStore } from './BaseRedisStore'
 import { deleteKeysChunked, scanKeys, toBytesOrNull, toRedisBuffer } from './helpers'

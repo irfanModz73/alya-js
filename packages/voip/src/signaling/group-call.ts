@@ -1,6 +1,6 @@
-import { createNoopLogger, type Logger } from 'zapo-js'
-import { normalizeDeviceJid, toUserJid } from 'zapo-js/protocol'
-import { type BinaryNode, buildReceiptNode } from 'zapo-js/transport'
+import { createNoopLogger, type Logger } from 'alya-js'
+import { normalizeDeviceJid, toUserJid } from 'alya-js/protocol'
+import { type BinaryNode, buildReceiptNode } from 'alya-js/transport'
 
 import type { WaCallGroupParticipant } from '../call/group-participants.js'
 import { groupParticipantAccountKey } from '../jid.js'

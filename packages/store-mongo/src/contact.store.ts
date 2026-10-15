@@ -1,5 +1,5 @@
-import { isUserJid } from 'zapo-js'
-import type { WaContactStore, WaStoredContactRecord } from 'zapo-js/store'
+import { isUserJid } from 'alya-js'
+import type { WaContactStore, WaStoredContactRecord } from 'alya-js/store'
 
 import { BaseMongoStore } from './BaseMongoStore'
 import type { WaMongoStorageOptions } from './types'

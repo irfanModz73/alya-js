@@ -615,7 +615,7 @@ export interface WaDownloadMediaMessageOptions extends WaDownloadMediaOptions {
  * @throws when `source` carries no downloadable media.
  * @example
  * ```ts
- * import { downloadMediaMessage } from 'zapo-js'
+ * import { downloadMediaMessage } from 'alya-js'
  * import { createWriteStream } from 'node:fs'
  *
  * const stream = await downloadMediaMessage(event)

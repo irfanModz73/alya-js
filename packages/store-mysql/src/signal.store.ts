@@ -1,6 +1,6 @@
 import type { PoolConnection } from 'mysql2/promise'
-import type { RegistrationInfo, SignedPreKeyRecord } from 'zapo-js/signal'
-import type { WaSignalStore } from 'zapo-js/store'
+import type { RegistrationInfo, SignedPreKeyRecord } from 'alya-js/signal'
+import type { WaSignalStore } from 'alya-js/store'
 
 import { BaseMysqlStore } from './BaseMysqlStore'
 import { type MysqlRow, queryFirst, toBytes } from './helpers'

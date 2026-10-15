@@ -1,5 +1,5 @@
 import { WA_WAM_WIRE_FORMAT } from '@vinikjkkj/wa-wam'
-import { TEXT_ENCODER } from 'zapo-js/util'
+import { TEXT_ENCODER } from 'alya-js/util'
 
 import type { BinaryWriter } from './binary-writer.js'
 

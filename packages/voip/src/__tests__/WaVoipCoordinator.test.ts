@@ -2,10 +2,10 @@ import assert from 'node:assert/strict'
 import { EventEmitter } from 'node:events'
 import { test } from 'node:test'
 
-import { createNoopLogger, type WaClientPluginContext } from 'zapo-js'
-import { WA_MESSAGE_TAGS } from 'zapo-js/protocol'
+import { createNoopLogger, type WaClientPluginContext } from 'alya-js'
+import { WA_MESSAGE_TAGS } from 'alya-js/protocol'
 
-import type { WaCallReaction } from '@zapo-js/voip-media'
+import type { WaCallReaction } from '@alya-js/voip-media'
 
 import type { CallInfo } from '../call/call-state.js'
 import type { VoipEvents } from '../events.js'

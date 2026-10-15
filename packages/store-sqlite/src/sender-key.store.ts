@@ -9,9 +9,9 @@ import {
     type SignalAddress,
     type SignalAddressParts,
     toSignalAddressParts
-} from 'zapo-js/signal'
-import type { WaSenderKeyStore as WaSenderKeyStoreContract } from 'zapo-js/store'
-import { asNumber, asString } from 'zapo-js/util'
+} from 'alya-js/signal'
+import type { WaSenderKeyStore as WaSenderKeyStoreContract } from 'alya-js/store'
+import { asNumber, asString } from 'alya-js/util'
 
 import { BaseSqliteStore } from './BaseSqliteStore'
 import type { WaSqliteConnection } from './connection'

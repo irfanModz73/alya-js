@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 
-import { createStore, WaAuthMemoryStore, WaClient, type WaClientEventMap } from 'zapo-js'
+import { createStore, WaAuthMemoryStore, WaClient, type WaClientEventMap } from 'alya-js'
 
 import { FakeWaServer } from '../api/FakeWaServer'
 import { parsePairingQrString } from '../protocol/auth/pair-device'

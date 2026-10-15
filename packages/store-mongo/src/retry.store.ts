@@ -1,6 +1,6 @@
 import type { Binary } from 'mongodb'
-import type { WaRetryOutboundMessageRecord, WaRetryOutboundState } from 'zapo-js/retry'
-import type { WaRetryStore } from 'zapo-js/store'
+import type { WaRetryOutboundMessageRecord, WaRetryOutboundState } from 'alya-js/retry'
+import type { WaRetryStore } from 'alya-js/store'
 
 import { BaseMongoStore } from './BaseMongoStore'
 import { fromBinary, toBinary } from './helpers'

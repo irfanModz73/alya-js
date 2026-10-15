@@ -1,4 +1,4 @@
-/** Byte helpers of the media plane, kept here because the package runs without `zapo-js`. */
+/** Byte helpers of the media plane, kept here because the package runs without `alya-js`. */
 
 export const TEXT_ENCODER = new TextEncoder()
 export const TEXT_DECODER = new TextDecoder()

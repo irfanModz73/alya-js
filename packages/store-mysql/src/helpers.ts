@@ -5,7 +5,7 @@ import {
     toBytesView,
     uint8Equal,
     uint8TimingSafeEqual
-} from 'zapo-js/util'
+} from 'alya-js/util'
 
 export type MysqlRow = Record<string, unknown>
 type QueryOutput = [unknown, FieldPacket[]]

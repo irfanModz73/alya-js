@@ -1,6 +1,6 @@
-import { hkdf } from 'zapo-js/crypto'
+import { hkdf } from 'alya-js/crypto'
 
-import { randomBytes, type SrtpKeyingMaterial } from '@zapo-js/voip-media'
+import { randomBytes, type SrtpKeyingMaterial } from '@alya-js/voip-media'
 
 import { TEXT_ENCODER } from '../bytes.js'
 

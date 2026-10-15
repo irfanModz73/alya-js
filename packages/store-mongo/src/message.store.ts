@@ -1,5 +1,5 @@
 import type { Binary, Document } from 'mongodb'
-import type { WaMessageStore, WaStoredMessageRecord } from 'zapo-js/store'
+import type { WaMessageStore, WaStoredMessageRecord } from 'alya-js/store'
 
 import { BaseMongoStore } from './BaseMongoStore'
 import { fromBinaryOrNull, safeLimit, toBinary } from './helpers'

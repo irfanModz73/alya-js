@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
 
-import type { BinaryNode } from 'zapo-js/transport'
+import type { BinaryNode } from 'alya-js/transport'
 
 import { routeCallStanza } from '../../signaling/bridge.js'
 import { CallMediaType, CallState, EndCallReason } from '../../types.js'

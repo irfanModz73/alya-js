@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import test from 'node:test'
 
-import { proto, type WaClient, type WaClientEventMap } from 'zapo-js'
+import { proto, type WaClient, type WaClientEventMap } from 'alya-js'
 
 import { FakeWaServer } from '../api/FakeWaServer'
 

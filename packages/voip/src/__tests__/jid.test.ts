@@ -1,8 +1,8 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
 
-import { createNoopLogger } from 'zapo-js'
-import type { BinaryNode } from 'zapo-js/transport'
+import { createNoopLogger } from 'alya-js'
+import type { BinaryNode } from 'alya-js/transport'
 
 import { toAddressedJid } from '../call/call-jids.js'
 import { groupSenderDeviceJids } from '../call/group-media-plan.js'

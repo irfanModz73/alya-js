@@ -1,6 +1,6 @@
-import { canonicalizeSignalServer, parseSignalAddressFromJid, WA_DEFAULTS } from 'zapo-js/protocol'
-import { type BinaryNode, findNodeChild, getNodeChildrenByTag } from 'zapo-js/transport'
-import { tryAsNumber } from 'zapo-js/util'
+import { canonicalizeSignalServer, parseSignalAddressFromJid, WA_DEFAULTS } from 'alya-js/protocol'
+import { type BinaryNode, findNodeChild, getNodeChildrenByTag } from 'alya-js/transport'
+import { tryAsNumber } from 'alya-js/util'
 
 import type { WaCallGroupParticipant } from '../call/group-participants.js'
 import { addressDeviceJid } from '../jid.js'

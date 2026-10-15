@@ -12,8 +12,8 @@
 </p>
 
 <p align="center">
-  <a href="https://www.npmjs.com/package/zapo-js"><img alt="npm version" src="https://img.shields.io/npm/v/zapo-js?color=CB3837" /></a>
-  <a href="https://www.npmjs.com/package/zapo-js"><img alt="npm package size" src="https://img.shields.io/npm/unpacked-size/zapo-js?label=package%20size&color=2F855A" /></a>
+  <a href="https://www.npmjs.com/package/alya-js"><img alt="npm version" src="https://img.shields.io/npm/v/alya-js?color=CB3837" /></a>
+  <a href="https://www.npmjs.com/package/alya-js"><img alt="npm package size" src="https://img.shields.io/npm/unpacked-size/alya-js?label=package%20size&color=2F855A" /></a>
   <a href="https://github.com/sponsors/vinikjkkj"><img alt="sponsor" src="https://img.shields.io/badge/sponsor-vinikjkkj-EA4AAA?logo=githubsponsors&logoColor=white" /></a>
   <img alt="node version" src="https://img.shields.io/badge/node-%3E%3D20.9.0-339933" />
   <img alt="language" src="https://img.shields.io/badge/language-TypeScript-3178C6" />
@@ -30,14 +30,14 @@
 
 ## Stability Notice
 
-> `zapo-js` is stable as of `1.0.0`. The public API follows SemVer:
+> `alya-js` is stable as of `1.0.0`. The public API follows SemVer:
 > breaking changes ship only in a major release; minors add features,
 > patches fix bugs.
 
 ## Install
 
 ```bash
-npm install zapo-js
+npm install alya-js
 ```
 
 Zero mandatory runtime dependencies. Pick the optional packages you need
@@ -46,24 +46,24 @@ voice-note metadata, and the native crypto accelerator.
 
 ```bash
 # Persistent store - choose one
-npm install @zapo-js/store-sqlite better-sqlite3
-# or @zapo-js/store-redis ioredis
-# or @zapo-js/store-postgres pg
-# or @zapo-js/store-mysql mysql2
-# or @zapo-js/store-mongo mongodb
+npm install @alya-js/store-sqlite better-sqlite3
+# or @alya-js/store-redis ioredis
+# or @alya-js/store-postgres pg
+# or @alya-js/store-mysql mysql2
+# or @alya-js/store-mongo mongodb
 
 # Optional - thumbnails + waveforms + voice-note normalization
-npm install @zapo-js/media-utils sharp
+npm install @alya-js/media-utils sharp
 # plus a system `ffmpeg` + `ffprobe` on PATH (see media-utils README)
 
 # Optional - Rust crypto accelerator, no code change required
-npm install @zapo-js/native
+npm install @alya-js/native
 
 # Optional - structured logging
 npm install pino pino-pretty
 ```
 
-`@zapo-js/native` is picked up automatically once installed: the core
+`@alya-js/native` is picked up automatically once installed: the core
 resolves it on first use and falls back to the JS implementation when it is
 absent, so nothing else changes. It accelerates the two primitives that
 dominate the messaging hot path, X25519 ECDH and XEdDSA sign / verify. The
@@ -74,8 +74,8 @@ to be built from `packages/native`. Set `ZAPO_NATIVE_BACKEND=js` to opt out.
 ## Quick Start
 
 ```ts
-import { ConsoleLogger, createStore, WaClient } from 'zapo-js'
-import { createSqliteStore } from '@zapo-js/store-sqlite'
+import { ConsoleLogger, createStore, WaClient } from 'alya-js'
+import { createSqliteStore } from '@alya-js/store-sqlite'
 
 const store = createStore({
     backends: {
@@ -123,24 +123,24 @@ event map, and the architectural reasoning - read the guides at
 
 ## Packages
 
-The core lives at the repo root (`zapo-js`). Optional packages live in
-[`packages/`](packages/) and ship under the `@zapo-js/*` scope. Install
+The core lives at the repo root (`alya-js`). Optional packages live in
+[`packages/`](packages/) and ship under the `@alya-js/*` scope. Install
 only what you need.
 
 | Package                                              | Peer dependency                                                                       | Purpose                                                                                                                                          |
 | ---------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [`@zapo-js/store-sqlite`](packages/store-sqlite)     | `better-sqlite3`                                                                      | SQLite persistent store (single-process bots, dev sessions, small-to-medium prod).                                                               |
-| [`@zapo-js/store-redis`](packages/store-redis)       | `ioredis`                                                                             | Redis-backed store with native TTL eviction.                                                                                                     |
-| [`@zapo-js/store-mongo`](packages/store-mongo)       | `mongodb`                                                                             | MongoDB-backed store with TTL-index eviction.                                                                                                    |
-| [`@zapo-js/store-mysql`](packages/store-mysql)       | `mysql2`                                                                              | MySQL / MariaDB-backed store with background cleanup poller.                                                                                     |
-| [`@zapo-js/store-postgres`](packages/store-postgres) | `pg`                                                                                  | PostgreSQL-backed store with background cleanup poller.                                                                                          |
-| [`@zapo-js/media-utils`](packages/media-utils)       | `sharp` + `file-type` + `ffmpeg`                                                      | `WaMediaProcessor`: thumbnails, waveforms, voice-note normalization.                                                                             |
-| [`@zapo-js/native`](packages/native)                 | (none)                                                                                | Rust crypto accelerator for the messaging hot path (X25519 ECDH, XEdDSA sign / verify). Auto-detected once installed; ships as a WASM build.     |
-| [`@zapo-js/voip`](packages/voip)                     | `@roamhq/wrtc` + `libmlow-wasm-fork`                                                  | `client.voip` plugin for calls: MLow/WASM codec, SRTP, STUN, WebRTC/SCTP relay transport.                                                        |
-| [`@zapo-js/voip-media`](packages/voip-media)         | `libmlow-wasm-fork` (optional, to carry media) + `@roamhq/wrtc` (optional, Node host) | Call media plane with no Node or `zapo-js` dependency, so it runs in the browser: relay transport, STUN, SRTP, RTP/RTCP, MLow codec.             |
-| [`@zapo-js/wam`](packages/wam)                       | (none)                                                                                | `client.wam` plugin emitting the client-side WAM telemetry batches WA Web sends, for wire parity and anti-fingerprinting.                        |
-| [`@zapo-js/fake-server`](packages/fake-server)       | (none)                                                                                | In-process fake WhatsApp Web server for end-to-end testing.                                                                                      |
-| [`@zapo-js/mcp-server`](packages/mcp-server)         | `@modelcontextprotocol/sdk`                                                           | **Dev-only.** MCP server exposing multi-session `WaClient`s as dynamic tools for an LLM agent (Claude Code / Cursor / etc.). Not for production. |
+| [`@alya-js/store-sqlite`](packages/store-sqlite)     | `better-sqlite3`                                                                      | SQLite persistent store (single-process bots, dev sessions, small-to-medium prod).                                                               |
+| [`@alya-js/store-redis`](packages/store-redis)       | `ioredis`                                                                             | Redis-backed store with native TTL eviction.                                                                                                     |
+| [`@alya-js/store-mongo`](packages/store-mongo)       | `mongodb`                                                                             | MongoDB-backed store with TTL-index eviction.                                                                                                    |
+| [`@alya-js/store-mysql`](packages/store-mysql)       | `mysql2`                                                                              | MySQL / MariaDB-backed store with background cleanup poller.                                                                                     |
+| [`@alya-js/store-postgres`](packages/store-postgres) | `pg`                                                                                  | PostgreSQL-backed store with background cleanup poller.                                                                                          |
+| [`@alya-js/media-utils`](packages/media-utils)       | `sharp` + `file-type` + `ffmpeg`                                                      | `WaMediaProcessor`: thumbnails, waveforms, voice-note normalization.                                                                             |
+| [`@alya-js/native`](packages/native)                 | (none)                                                                                | Rust crypto accelerator for the messaging hot path (X25519 ECDH, XEdDSA sign / verify). Auto-detected once installed; ships as a WASM build.     |
+| [`@alya-js/voip`](packages/voip)                     | `@roamhq/wrtc` + `libmlow-wasm-fork`                                                  | `client.voip` plugin for calls: MLow/WASM codec, SRTP, STUN, WebRTC/SCTP relay transport.                                                        |
+| [`@alya-js/voip-media`](packages/voip-media)         | `libmlow-wasm-fork` (optional, to carry media) + `@roamhq/wrtc` (optional, Node host) | Call media plane with no Node or `alya-js` dependency, so it runs in the browser: relay transport, STUN, SRTP, RTP/RTCP, MLow codec.             |
+| [`@alya-js/wam`](packages/wam)                       | (none)                                                                                | `client.wam` plugin emitting the client-side WAM telemetry batches WA Web sends, for wire parity and anti-fingerprinting.                        |
+| [`@alya-js/fake-server`](packages/fake-server)       | (none)                                                                                | In-process fake WhatsApp Web server for end-to-end testing.                                                                                      |
+| [`@alya-js/mcp-server`](packages/mcp-server)         | `@modelcontextprotocol/sdk`                                                           | **Dev-only.** MCP server exposing multi-session `WaClient`s as dynamic tools for an LLM agent (Claude Code / Cursor / etc.). Not for production. |
 
 Each package's README has the install + config + integration notes.
 

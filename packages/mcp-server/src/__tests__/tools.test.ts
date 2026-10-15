@@ -258,7 +258,7 @@ test('call tool with root=lib invokes a pure helper without touching client', as
         runtime
     )) as { result: unknown; rootLabel: string }
     assert.equal(result.result, true)
-    assert.equal(result.rootLabel, 'zapo-js')
+    assert.equal(result.rootLabel, 'alya-js')
     assert.equal(ensureCalls, 0)
 })
 
@@ -286,7 +286,7 @@ test('inspect tool with root=lib lists module exports', async () => {
         members: { name: string; kind: string }[]
         rootLabel: string
     }
-    assert.equal(result.rootLabel, 'zapo-js')
+    assert.equal(result.rootLabel, 'alya-js')
     const names = new Set(result.members.map((m) => m.name))
     assert.ok(names.has('WaClient'))
     assert.ok(names.has('createStore'))

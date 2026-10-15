@@ -2,9 +2,9 @@ import assert from 'node:assert/strict'
 import { after, before, describe, it } from 'node:test'
 
 import Redis from 'ioredis'
-import { toSerializedPubKey, X25519 } from 'zapo-js/crypto'
-import { WA_APP_STATE_COLLECTIONS } from 'zapo-js/protocol'
-import type { SignalAddress, SignalSessionRecord } from 'zapo-js/signal'
+import { toSerializedPubKey, X25519 } from 'alya-js/crypto'
+import { WA_APP_STATE_COLLECTIONS } from 'alya-js/protocol'
+import type { SignalAddress, SignalSessionRecord } from 'alya-js/signal'
 
 import { createRedisStore, type WaRedisStoreResult } from '../index'
 

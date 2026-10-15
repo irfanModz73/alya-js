@@ -1,4 +1,4 @@
-import type { WaCallMediaMessage, WaCallReaction } from '@zapo-js/voip-media'
+import type { WaCallMediaMessage, WaCallReaction } from '@alya-js/voip-media'
 
 import type { CallInfo } from './call/call-state.js'
 import type { WaGroupCompositionDiff } from './call/group-participants.js'

@@ -1,7 +1,7 @@
-import { type BinaryNode, getFirstNodeChild } from 'zapo-js/transport'
-import { bytesToHex } from 'zapo-js/util'
+import { type BinaryNode, getFirstNodeChild } from 'alya-js/transport'
+import { bytesToHex } from 'alya-js/util'
 
-import { randomBytes } from '@zapo-js/voip-media'
+import { randomBytes } from '@alya-js/voip-media'
 
 import type { NodeInfo } from '../types.js'
 

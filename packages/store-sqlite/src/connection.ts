@@ -1,5 +1,5 @@
-import type { Logger } from 'zapo-js'
-import { isBunRuntime, toSafeNumber } from 'zapo-js/util'
+import type { Logger } from 'alya-js'
+import { isBunRuntime, toSafeNumber } from 'alya-js/util'
 
 import {
     createSqliteTableNameSqlResolver,

@@ -1,4 +1,4 @@
-import type { WaDeviceListSnapshot, WaDeviceListStore } from 'zapo-js/store'
+import type { WaDeviceListSnapshot, WaDeviceListStore } from 'alya-js/store'
 
 import { BasePgStore } from './BasePgStore'
 import { affectedRows, queryRows } from './helpers'

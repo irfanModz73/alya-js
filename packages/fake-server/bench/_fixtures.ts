@@ -4,7 +4,7 @@
  * groups on demand. Used by every messaging-flavored bench.
  */
 
-import { WaClient, type WaClientEventMap } from 'zapo-js'
+import { WaClient, type WaClientEventMap } from 'alya-js'
 
 import { type FakePeer } from '../src/api/FakePeer'
 import { FakeWaServer, type WaFakeConnectionPipeline } from '../src/api/FakeWaServer'

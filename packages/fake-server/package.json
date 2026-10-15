@@ -1,7 +1,7 @@
 {
-    "name": "@zapo-js/fake-server",
+    "name": "@alya-js/fake-server",
     "version": "1.3.0",
-    "description": "Fake WhatsApp Web server used to test zapo-js",
+    "description": "Fake WhatsApp Web server used to test alya-js",
     "license": "MIT",
     "author": "vinikjkkj <contact@vinicius.email> (https://github.com/vinikjkkj)",
     "repository": {
@@ -48,14 +48,14 @@
         "bench:all-stores": "node bench/run-all-stores.cjs"
     },
     "peerDependencies": {
-        "zapo-js": "^1.0.0"
+        "alya-js": "^1.0.0"
     },
     "dependencies": {
         "ws": "^8.18.0"
     },
     "devDependencies": {
         "@types/ws": "^8.18.1",
-        "zapo-js": "file:../.."
+        "alya-js": "file:../.."
     },
     "engines": {
         "node": ">=20.9.0"

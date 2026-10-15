@@ -1,8 +1,8 @@
 /**
  * Layer 1 – byte/encoding primitives wrapper.
  *
- * Re-exports bit-exact byte helpers from zapo-js so Layer 2/3 of the fake
- * server can use them without importing zapo-js directly.
+ * Re-exports bit-exact byte helpers from alya-js so Layer 2/3 of the fake
+ * server can use them without importing alya-js directly.
  */
 
 export {
@@ -11,7 +11,7 @@ export {
     bytesToHex,
     decodeBase64Url,
     toError
-} from 'zapo-js/util'
+} from 'alya-js/util'
 
 export const TEXT_ENCODER = new TextEncoder()
 export const TEXT_DECODER = new TextDecoder()

@@ -1,7 +1,7 @@
-import type { Logger } from 'zapo-js'
-import { toUserJid } from 'zapo-js/protocol'
-import { type BinaryNode, findNodeChild, getNodeChildrenByTag } from 'zapo-js/transport'
-import { toError, uint8TimingSafeEqual } from 'zapo-js/util'
+import type { Logger } from 'alya-js'
+import { toUserJid } from 'alya-js/protocol'
+import { type BinaryNode, findNodeChild, getNodeChildrenByTag } from 'alya-js/transport'
+import { toError, uint8TimingSafeEqual } from 'alya-js/util'
 
 import {
     type WaCallMediaEvent,
@@ -10,7 +10,7 @@ import {
     type WaCallMediaMessage,
     type WaCallMediaSsrcs,
     type WaCallReaction
-} from '@zapo-js/voip-media'
+} from '@alya-js/voip-media'
 
 import { derivePerJidSrtpKey } from '../crypto/encryption.js'
 import { isSameDeviceJid, toDeviceJid } from '../jid.js'

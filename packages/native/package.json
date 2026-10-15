@@ -1,7 +1,7 @@
 {
-    "name": "@zapo-js/native",
+    "name": "@alya-js/native",
     "version": "0.1.0",
-    "description": "Native accelerators for zapo-js (Rust NAPI addon + WASM fallback)",
+    "description": "Native accelerators for alya-js (Rust NAPI addon + WASM fallback)",
     "license": "MIT",
     "author": "vinikjkkj <contact@vinicius.email> (https://github.com/vinikjkkj)",
     "repository": {
@@ -33,10 +33,10 @@
         "access": "public"
     },
     "peerDependencies": {
-        "zapo-js": "^1.7.0"
+        "alya-js": "^1.7.0"
     },
     "peerDependenciesMeta": {
-        "zapo-js": {
+        "alya-js": {
             "optional": true
         }
     },

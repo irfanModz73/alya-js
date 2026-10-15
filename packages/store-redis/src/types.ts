@@ -1,5 +1,5 @@
 import type { default as Redis, RedisOptions } from 'ioredis'
-import type { Logger } from 'zapo-js'
+import type { Logger } from 'alya-js'
 
 export interface WaRedisStorageOptions {
     readonly redis: Redis

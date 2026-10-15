@@ -1,4 +1,4 @@
-import { signalAddressKey } from 'zapo-js/protocol'
+import { signalAddressKey } from 'alya-js/protocol'
 import {
     decodeSignalSessionRecord,
     encodeSignalSessionRecord,
@@ -6,9 +6,9 @@ import {
     type SignalSessionRecord,
     type SignalSessionRow,
     toSignalAddressParts
-} from 'zapo-js/signal'
-import type { WaSessionStore as WaSessionStoreContract } from 'zapo-js/store'
-import { asNumber, asString, resolvePositive } from 'zapo-js/util'
+} from 'alya-js/signal'
+import type { WaSessionStore as WaSessionStoreContract } from 'alya-js/store'
+import { asNumber, asString, resolvePositive } from 'alya-js/util'
 
 import { BaseSqliteStore } from './BaseSqliteStore'
 import type { WaSqliteConnection } from './connection'

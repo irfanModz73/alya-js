@@ -1,6 +1,6 @@
 import type { Binary } from 'mongodb'
-import type { RegistrationInfo, SignedPreKeyRecord } from 'zapo-js/signal'
-import type { WaSignalStore } from 'zapo-js/store'
+import type { RegistrationInfo, SignedPreKeyRecord } from 'alya-js/signal'
+import type { WaSignalStore } from 'alya-js/store'
 
 import { BaseMongoStore } from './BaseMongoStore'
 import { fromBinary, toBinary } from './helpers'

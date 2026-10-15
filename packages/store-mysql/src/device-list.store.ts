@@ -1,5 +1,5 @@
-import type { WaDeviceListSnapshot, WaDeviceListStore } from 'zapo-js/store'
-import { TEXT_DECODER } from 'zapo-js/util'
+import type { WaDeviceListSnapshot, WaDeviceListStore } from 'alya-js/store'
+import { TEXT_DECODER } from 'alya-js/util'
 
 import { BaseMysqlStore } from './BaseMysqlStore'
 import { affectedRows, queryRows } from './helpers'

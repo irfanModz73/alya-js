@@ -1,5 +1,5 @@
 import type { ChainableCommander, default as Redis } from 'ioredis'
-import type { Logger } from 'zapo-js'
+import type { Logger } from 'alya-js'
 
 import { assertSafeKeyPrefix } from './helpers'
 import type { WaRedisStorageOptions } from './types'

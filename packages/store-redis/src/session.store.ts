@@ -4,8 +4,8 @@ import {
     type SignalAddress,
     type SignalSessionRecord,
     toSignalAddressParts
-} from 'zapo-js/signal'
-import type { WaSessionStore } from 'zapo-js/store'
+} from 'alya-js/signal'
+import type { WaSessionStore } from 'alya-js/store'
 
 import { BaseRedisStore } from './BaseRedisStore'
 import { deleteKeysChunked, scanKeys, toRedisBuffer } from './helpers'

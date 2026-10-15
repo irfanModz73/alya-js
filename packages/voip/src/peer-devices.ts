@@ -1,6 +1,6 @@
-import type { Logger } from 'zapo-js'
-import { isLidJid } from 'zapo-js/protocol'
-import { toError } from 'zapo-js/util'
+import type { Logger } from 'alya-js'
+import { isLidJid } from 'alya-js/protocol'
+import { toError } from 'alya-js/util'
 
 import { groupParticipantAccountKey, toDeviceJid } from './jid.js'
 import type { CallOfferParticipant, WaVoipDeps } from './types.js'

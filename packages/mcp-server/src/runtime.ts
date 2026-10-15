@@ -10,12 +10,12 @@ import {
     WaClient,
     type WaClientEventMap,
     type WaStore
-} from 'zapo-js'
-import { hexToBytes, resolvePositive, toError } from 'zapo-js/util'
+} from 'alya-js'
+import { hexToBytes, resolvePositive, toError } from 'alya-js/util'
 
-import { createMediaProcessor } from '@zapo-js/media-utils'
-import { createSqliteStore } from '@zapo-js/store-sqlite'
-import { wamPlugin } from '@zapo-js/wam'
+import { createMediaProcessor } from '@alya-js/media-utils'
+import { createSqliteStore } from '@alya-js/store-sqlite'
+import { wamPlugin } from '@alya-js/wam'
 
 import { encodeForJson } from './serializer'
 

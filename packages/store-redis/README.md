@@ -1,13 +1,13 @@
-# @zapo-js/store-redis
+# @alya-js/store-redis
 
-Redis-backed persistent store for [`zapo-js`](https://www.npmjs.com/package/zapo-js). Best fit when you already run Redis for caching and want stateless app instances that can share WhatsApp session state through a network database.
+Redis-backed persistent store for [`alya-js`](https://www.npmjs.com/package/alya-js). Best fit when you already run Redis for caching and want stateless app instances that can share WhatsApp session state through a network database.
 
 Built on [`ioredis`](https://github.com/redis/ioredis). All 11 persistent domains and 4 cache domains live under a single key namespace (`keyPrefix` controls it). Cache TTLs are enforced natively by Redis - no background cleanup job needed.
 
 ## Install
 
 ```bash
-npm install @zapo-js/store-redis ioredis
+npm install @alya-js/store-redis ioredis
 ```
 
 `ioredis` is a peer dependency.
@@ -15,8 +15,8 @@ npm install @zapo-js/store-redis ioredis
 ## Quick start
 
 ```ts
-import { createStore, WaClient } from 'zapo-js'
-import { createRedisStore } from '@zapo-js/store-redis'
+import { createStore, WaClient } from 'alya-js'
+import { createRedisStore } from '@alya-js/store-redis'
 
 const store = createStore({
     backends: {
@@ -96,4 +96,4 @@ createRedisStore({
 - Keys are JSON-encoded blobs. Migrating to a different backend later means draining via the in-memory store or doing a one-shot SCAN copy.
 - For multi-region deployments, use the same `keyPrefix` across instances and let Redis replication handle session sharing.
 
-See the main [`zapo-js`](../../README.md) docs for the full store contract.
+See the main [`alya-js`](../../README.md) docs for the full store contract.

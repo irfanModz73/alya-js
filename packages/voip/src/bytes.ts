@@ -1,4 +1,4 @@
-export { concatBytes, TEXT_DECODER, TEXT_ENCODER } from 'zapo-js/util'
+export { concatBytes, TEXT_DECODER, TEXT_ENCODER } from 'alya-js/util'
 
 function ensureBounds(buf: Uint8Array, offset: number, size: number): void {
     if (!Number.isInteger(offset) || offset < 0 || offset + size > buf.length) {

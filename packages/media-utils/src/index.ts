@@ -2,8 +2,8 @@ import type {
     WaMediaProcessor,
     WaMediaProcessorCallContext,
     WaMediaProcessorInput
-} from 'zapo-js/media'
-import { toError } from 'zapo-js/util'
+} from 'alya-js/media'
+import { toError } from 'alya-js/util'
 
 import {
     computeWaveformWithFfmpeg,
@@ -35,8 +35,8 @@ export type { WaMediaProcessorOptions } from './types'
  *
  * @example
  * ```ts
- * import { WaClient } from 'zapo-js'
- * import { createMediaProcessor } from '@zapo-js/media-utils'
+ * import { WaClient } from 'alya-js'
+ * import { createMediaProcessor } from '@alya-js/media-utils'
  *
  * // One processor, multiple sessions - safe.
  * const processor = createMediaProcessor()

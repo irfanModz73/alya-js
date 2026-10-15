@@ -1,5 +1,5 @@
 import type { PoolClient } from 'pg'
-import type { WaStoredThreadRecord, WaThreadStore } from 'zapo-js/store'
+import type { WaStoredThreadRecord, WaThreadStore } from 'alya-js/store'
 
 import { BasePgStore } from './BasePgStore'
 import { affectedRows, type PgRow, queryFirst, queryRows, safeLimit } from './helpers'

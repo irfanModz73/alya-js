@@ -1,9 +1,9 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
 
-import { createNoopLogger } from 'zapo-js'
+import { createNoopLogger } from 'alya-js'
 
-import type { WaCallMediaMessage } from '@zapo-js/voip-media'
+import type { WaCallMediaMessage } from '@alya-js/voip-media'
 
 import { WaVoipSettings } from '../../signaling/voip-settings.js'
 import { CallMediaType, CallState, EndCallReason, type WaVoipDeps } from '../../types.js'

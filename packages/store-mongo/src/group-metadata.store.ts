@@ -1,4 +1,4 @@
-import type { WaGroupMetadataSnapshot, WaGroupMetadataStore } from 'zapo-js/store'
+import type { WaGroupMetadataSnapshot, WaGroupMetadataStore } from 'alya-js/store'
 
 import { BaseMongoStore } from './BaseMongoStore'
 import type { WaMongoStorageOptions } from './types'

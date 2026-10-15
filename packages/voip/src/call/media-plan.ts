@@ -1,4 +1,4 @@
-import type { WaCallMediaSettings } from '@zapo-js/voip-media'
+import type { WaCallMediaSettings } from '@alya-js/voip-media'
 
 import { WA_AUDIO_CALL_SSRC_SLOTS, WA_VIDEO_CALL_SSRC_SLOTS } from '../crypto/ssrc.js'
 import type { WaVoipSettings } from '../signaling/voip-settings.js'

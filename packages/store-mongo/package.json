@@ -1,7 +1,7 @@
 {
-    "name": "@zapo-js/store-mongo",
+    "name": "@alya-js/store-mongo",
     "version": "1.2.0",
-    "description": "MongoDB store provider for zapo-js",
+    "description": "MongoDB store provider for alya-js",
     "license": "MIT",
     "author": "vinikjkkj <contact@vinicius.email> (https://github.com/vinikjkkj)",
     "repository": {
@@ -32,12 +32,12 @@
         "test": "node --import tsx --test \"src/**/__tests__/**/*.test.ts\""
     },
     "peerDependencies": {
-        "zapo-js": "^1.7.0",
+        "alya-js": "^1.7.0",
         "mongodb": ">=6.0.0"
     },
     "devDependencies": {
         "mongodb": "^6.16.0",
-        "zapo-js": "file:../.."
+        "alya-js": "file:../.."
     },
     "engines": {
         "node": ">=20.9.0"

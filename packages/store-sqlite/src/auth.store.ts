@@ -1,6 +1,6 @@
-import type { WaAuthCredentials } from 'zapo-js/auth'
-import { proto } from 'zapo-js/proto'
-import type { WaAuthStore } from 'zapo-js/store'
+import type { WaAuthCredentials } from 'alya-js/auth'
+import { proto } from 'alya-js/proto'
+import type { WaAuthStore } from 'alya-js/store'
 import {
     asBytes,
     asNumber,
@@ -8,7 +8,7 @@ import {
     asOptionalNumber,
     asOptionalString,
     toBoolOrUndef
-} from 'zapo-js/util'
+} from 'alya-js/util'
 
 import { BaseSqliteStore } from './BaseSqliteStore'
 import type { WaSqliteStorageOptions } from './types'

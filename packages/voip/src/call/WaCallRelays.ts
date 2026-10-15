@@ -1,11 +1,11 @@
-import type { Logger } from 'zapo-js'
-import { type BinaryNode, getFirstNodeChild } from 'zapo-js/transport'
+import type { Logger } from 'alya-js'
+import { type BinaryNode, getFirstNodeChild } from 'alya-js/transport'
 
 import {
     dialableRelayEndpoints,
     type WaCallMediaRelay,
     type WaCallMediaRelays
-} from '@zapo-js/voip-media'
+} from '@alya-js/voip-media'
 
 import { readUInt32BE } from '../bytes.js'
 import { parseRelayFromAck } from '../relay/relay-ack.js'

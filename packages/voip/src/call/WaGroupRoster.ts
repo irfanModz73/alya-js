@@ -1,7 +1,7 @@
-import type { Logger } from 'zapo-js'
-import { toUserJid } from 'zapo-js/protocol'
-import type { BinaryNode } from 'zapo-js/transport'
-import { toError } from 'zapo-js/util'
+import type { Logger } from 'alya-js'
+import { toUserJid } from 'alya-js/protocol'
+import type { BinaryNode } from 'alya-js/transport'
+import { toError } from 'alya-js/util'
 
 import { groupParticipantAccountKey } from '../jid.js'
 import { type GroupCallRoster, readGroupCallRoster } from '../signaling/group-info.js'

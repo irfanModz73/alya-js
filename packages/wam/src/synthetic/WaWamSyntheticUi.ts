@@ -1,6 +1,6 @@
 import type { WaWamEventArgs } from '@vinikjkkj/wa-wam'
-import type { BinaryNode, WaClientPluginContext, WaIncomingMessageEvent } from 'zapo-js'
-import { isGroupJid, isLidJid, WA_ADDRESSING_MODES, WA_MESSAGE_TAGS } from 'zapo-js/protocol'
+import type { BinaryNode, WaClientPluginContext, WaIncomingMessageEvent } from 'alya-js'
+import { isGroupJid, isLidJid, WA_ADDRESSING_MODES, WA_MESSAGE_TAGS } from 'alya-js/protocol'
 
 import { findFirstEncNode, mediaTypeKey, type WamMediaTypeKey } from '../send-parse.js'
 import type { WaWamCoordinator } from '../WaWamCoordinator.js'

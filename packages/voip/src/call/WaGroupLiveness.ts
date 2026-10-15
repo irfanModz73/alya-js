@@ -1,4 +1,4 @@
-import type { Logger } from 'zapo-js'
+import type { Logger } from 'alya-js'
 
 import { groupParticipantAccountKey } from '../jid.js'
 import {

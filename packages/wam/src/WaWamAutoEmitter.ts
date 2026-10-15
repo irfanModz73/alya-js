@@ -12,7 +12,7 @@ import {
     type WaIncomingReceiptEvent,
     type WaIncomingUnhandledStanzaEvent,
     type WaOutgoingMessageEvent
-} from 'zapo-js'
+} from 'alya-js'
 import {
     isGroupJid,
     isLidJid,
@@ -26,8 +26,8 @@ import {
     WA_NODE_TAGS,
     WA_REGISTRATION_NOTIFICATION_TAGS,
     WA_XMLNS
-} from 'zapo-js/protocol'
-import { findNodeChild } from 'zapo-js/transport'
+} from 'alya-js/protocol'
+import { findNodeChild } from 'alya-js/transport'
 
 import {
     ciphertextTypeKey,

@@ -1,6 +1,6 @@
-import type { BinaryNode, Logger, WaClientPluginContext } from 'zapo-js'
-import { WA_DEFAULTS, WA_IQ_TYPES, WA_NODE_TAGS } from 'zapo-js/protocol'
-import { delay, toError } from 'zapo-js/util'
+import type { BinaryNode, Logger, WaClientPluginContext } from 'alya-js'
+import { WA_DEFAULTS, WA_IQ_TYPES, WA_NODE_TAGS } from 'alya-js/protocol'
+import { delay, toError } from 'alya-js/util'
 
 /** WAM-telemetry upload stanza namespace + child tag (`<iq xmlns="w:stats"><add t>`). WAM-specific, not a core concept. */
 const WAM_STATS_XMLNS = 'w:stats'

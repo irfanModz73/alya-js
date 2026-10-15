@@ -4,7 +4,7 @@ import assert from 'node:assert/strict'
 import { randomBytes } from 'node:crypto'
 import test from 'node:test'
 
-import type { WaClientEventMap } from 'zapo-js'
+import type { WaClientEventMap } from 'alya-js'
 
 import { FakeWaServer } from '../api/FakeWaServer'
 import { FakeAppStateCollection } from '../state/fake-app-state-collection'

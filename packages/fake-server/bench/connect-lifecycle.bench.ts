@@ -21,7 +21,7 @@
 
 import { performance } from 'node:perf_hooks'
 
-import { WaClient, type WaClientEventMap } from 'zapo-js'
+import { WaClient, type WaClientEventMap } from 'alya-js'
 
 import { FakeWaServer } from '../src/api/FakeWaServer'
 import { parsePairingQrString } from '../src/protocol/auth/pair-device'
@@ -382,7 +382,7 @@ async function main(): Promise<void> {
     const backendName = process.env.ZAPO_BENCH_STORE ?? 'memory'
     const separate = argSet.has('--separate-process')
 
-    console.log('zapo-js connect-lifecycle bench')
+    console.log('alya-js connect-lifecycle bench')
     console.log('───────────────────────────────')
     console.log(`  iterations  : ${iterations}`)
     console.log(`  store       : ${backendName}`)

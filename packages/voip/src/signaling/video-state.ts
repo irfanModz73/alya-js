@@ -1,5 +1,5 @@
-import type { BinaryNode } from 'zapo-js/transport'
-import { tryAsNumber } from 'zapo-js/util'
+import type { BinaryNode } from 'alya-js/transport'
+import { tryAsNumber } from 'alya-js/util'
 
 import type { PeerVideoStateChange } from '../types.js'
 

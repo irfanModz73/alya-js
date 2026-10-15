@@ -1,4 +1,4 @@
-import type { WaMessageStore, WaStoredMessageRecord } from 'zapo-js/store'
+import type { WaMessageStore, WaStoredMessageRecord } from 'alya-js/store'
 
 import { BaseRedisStore } from './BaseRedisStore'
 import { safeLimit, scanKeys, toBytesOrNull, toRedisBuffer, toStringOrNull } from './helpers'

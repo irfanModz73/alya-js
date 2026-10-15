@@ -1,5 +1,5 @@
 /**
- * End-to-end messaging-with-media bench driven through @zapo-js/fake-server.
+ * End-to-end messaging-with-media bench driven through @alya-js/fake-server.
  *
  * Complements `media-upload.bench.ts` (which sweeps image payload sizes)
  * by sweeping over the WhatsApp media TYPES and exercising both 1:1
@@ -54,7 +54,7 @@
 import { randomBytes } from 'node:crypto'
 import { Readable } from 'node:stream'
 
-import type { WaClient, WaClientEventMap } from 'zapo-js'
+import type { WaClient, WaClientEventMap } from 'alya-js'
 
 import type { FakePeer } from '../src/api/FakePeer'
 import type { FakeWaServer, WaFakeConnectionPipeline } from '../src/api/FakeWaServer'
@@ -570,7 +570,7 @@ async function main(): Promise<void> {
     const backendName = process.env.ZAPO_BENCH_STORE ?? 'memory'
     const separate = argSet.has('--separate-process')
 
-    console.log('zapo-js messaging-with-media bench')
+    console.log('alya-js messaging-with-media bench')
     console.log('──────────────────────────────────')
     console.log(`  messages/scenario : ${config.messages}`)
     console.log(

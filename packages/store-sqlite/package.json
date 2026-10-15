@@ -1,7 +1,7 @@
 {
-    "name": "@zapo-js/store-sqlite",
+    "name": "@alya-js/store-sqlite",
     "version": "1.3.0",
-    "description": "SQLite store provider for zapo-js",
+    "description": "SQLite store provider for alya-js",
     "license": "MIT",
     "author": "vinikjkkj <contact@vinicius.email> (https://github.com/vinikjkkj)",
     "repository": {
@@ -32,7 +32,7 @@
         "test": "node --import tsx --test \"src/**/__tests__/**/*.test.ts\""
     },
     "peerDependencies": {
-        "zapo-js": "^1.7.0",
+        "alya-js": "^1.7.0",
         "better-sqlite3": ">=11.0.0"
     },
     "peerDependenciesMeta": {
@@ -42,7 +42,7 @@
     },
     "devDependencies": {
         "better-sqlite3": "^12.6.2",
-        "zapo-js": "file:../.."
+        "alya-js": "file:../.."
     },
     "engines": {
         "node": ">=20.9.0"

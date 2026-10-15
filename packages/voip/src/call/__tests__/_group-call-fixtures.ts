@@ -1,6 +1,6 @@
 import assert from 'node:assert/strict'
 
-import type { BinaryNode } from 'zapo-js/transport'
+import type { BinaryNode } from 'alya-js/transport'
 
 import { encodeWAMessage } from '../../signaling/call-key.js'
 import { type WaVoipDeps, type WaVoipStores } from '../../types.js'

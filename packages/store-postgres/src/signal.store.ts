@@ -1,6 +1,6 @@
 import type { PoolClient } from 'pg'
-import type { RegistrationInfo, SignedPreKeyRecord } from 'zapo-js/signal'
-import type { WaSignalStore } from 'zapo-js/store'
+import type { RegistrationInfo, SignedPreKeyRecord } from 'alya-js/signal'
+import type { WaSignalStore } from 'alya-js/store'
 
 import { BasePgStore } from './BasePgStore'
 import { type PgRow, queryFirst, toBytes } from './helpers'

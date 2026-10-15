@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
 
-import { createNoopLogger, type Logger } from 'zapo-js'
+import { createNoopLogger, type Logger } from 'alya-js'
 
 import { groupParticipantAccountKey } from '../../jid.js'
 import {

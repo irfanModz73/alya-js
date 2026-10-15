@@ -1,6 +1,6 @@
-import { createNoopLogger, type Logger } from 'zapo-js'
-import { type BinaryNode, findNodeChild, getNodeChildren } from 'zapo-js/transport'
-import { base64ToBytes, TEXT_DECODER, toError, tryAsNumber } from 'zapo-js/util'
+import { createNoopLogger, type Logger } from 'alya-js'
+import { type BinaryNode, findNodeChild, getNodeChildren } from 'alya-js/transport'
+import { base64ToBytes, TEXT_DECODER, toError, tryAsNumber } from 'alya-js/util'
 
 const VOIP_SETTINGS_TAG = 'voip_settings'
 

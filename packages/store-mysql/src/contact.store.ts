@@ -1,6 +1,6 @@
 import type { PoolConnection } from 'mysql2/promise'
-import { isUserJid } from 'zapo-js'
-import type { WaContactStore, WaStoredContactRecord } from 'zapo-js/store'
+import { isUserJid } from 'alya-js'
+import type { WaContactStore, WaStoredContactRecord } from 'alya-js/store'
 
 import { BaseMysqlStore } from './BaseMysqlStore'
 import { affectedRows, queryFirst } from './helpers'

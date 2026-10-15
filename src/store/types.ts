@@ -113,7 +113,7 @@ export type WaCacheDomain = keyof WaCacheDomainContracts
  * Both parameters default to *every* domain, so a bare `WaStoreBackend`
  * keeps meaning a full backend – the whole of {@link WaStoreDomainContracts}
  * plus the whole of {@link WaCacheDomainContracts} – which is what every
- * in-tree `@zapo-js/store-*` package ships.
+ * in-tree `@alya-js/store-*` package ships.
  *
  * A backend covering only part of the matrix names its domains explicitly.
  * `createStore()` then refuses, at compile time, to route a domain it
@@ -265,7 +265,7 @@ export interface WaCreateStoreOptions<
          * "I am this paired device" to WhatsApp.** Lose it and the next
          * connect has to re-pair from scratch (QR/link-code). Default:
          * `'memory'` – fine for tests / one-shot scripts, but persist it
-         * (e.g. `@zapo-js/store-sqlite`) in production so the device
+         * (e.g. `@alya-js/store-sqlite`) in production so the device
          * survives a process restart.
          */
         readonly auth?: WaProviderFor<TBackends, 'auth'>
@@ -511,8 +511,8 @@ export interface WaCreateStoreOptions<
      * Logger for store-wide events: provider topology at boot, in-memory
      * capacity saturation warnings, and downstream slow-operation warnings
      * cascaded through backend factories. When unset, the store layer is
-     * silent. Backend packages (e.g. `@zapo-js/store-sqlite`,
-     * `@zapo-js/store-redis`) receive a `child({ scope: 'store', provider:
+     * silent. Backend packages (e.g. `@alya-js/store-sqlite`,
+     * `@alya-js/store-redis`) receive a `child({ scope: 'store', provider:
      * '<name>' })` if they accept the same convention in their own factory.
      */
     readonly logger?: Logger

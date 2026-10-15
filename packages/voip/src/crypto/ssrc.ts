@@ -1,4 +1,4 @@
-import { hkdf } from 'zapo-js/crypto'
+import { hkdf } from 'alya-js/crypto'
 
 import { readUInt32LE, TEXT_ENCODER, writeUInt32LE } from '../bytes.js'
 

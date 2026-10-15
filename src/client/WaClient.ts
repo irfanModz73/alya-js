@@ -868,8 +868,8 @@ export interface WaClientConstructor {
  *
  * @example
  * ```ts
- * import { createPinoLogger, createStore, WaClient } from 'zapo-js'
- * import { createSqliteStore } from '@zapo-js/store-sqlite'
+ * import { createPinoLogger, createStore, WaClient } from 'alya-js'
+ * import { createSqliteStore } from '@alya-js/store-sqlite'
  *
  * const store = createStore({
  *     backends: { sqlite: createSqliteStore({ path: '.auth/state.sqlite' }) },

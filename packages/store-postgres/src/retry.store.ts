@@ -1,5 +1,5 @@
-import type { WaRetryOutboundMessageRecord, WaRetryOutboundState } from 'zapo-js/retry'
-import type { WaRetryStore } from 'zapo-js/store'
+import type { WaRetryOutboundMessageRecord, WaRetryOutboundState } from 'alya-js/retry'
+import type { WaRetryStore } from 'alya-js/store'
 
 import { BasePgStore } from './BasePgStore'
 import { affectedRows, queryFirst, toBytes } from './helpers'

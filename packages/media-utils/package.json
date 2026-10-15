@@ -1,7 +1,7 @@
 {
-    "name": "@zapo-js/media-utils",
+    "name": "@alya-js/media-utils",
     "version": "1.0.0",
-    "description": "Media processing utilities for zapo-js (thumbnails, waveforms, probing)",
+    "description": "Media processing utilities for alya-js (thumbnails, waveforms, probing)",
     "license": "MIT",
     "author": "vinikjkkj <contact@vinicius.email> (https://github.com/vinikjkkj)",
     "repository": {
@@ -32,7 +32,7 @@
         "test": "node --import tsx --test \"src/**/__tests__/**/*.test.ts\""
     },
     "peerDependencies": {
-        "zapo-js": "^1.0.0",
+        "alya-js": "^1.0.0",
         "sharp": ">=0.33.0",
         "file-type": ">=19.0.0"
     },
@@ -44,7 +44,7 @@
     "devDependencies": {
         "sharp": "^0.33.0",
         "file-type": "^19.0.0",
-        "zapo-js": "file:../.."
+        "alya-js": "file:../.."
     },
     "engines": {
         "node": ">=20.9.0"

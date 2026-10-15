@@ -1,10 +1,10 @@
 import { WA_WAM_GLOBALS, type WaWamChannel, type WaWamGlobalName } from '@vinikjkkj/wa-wam'
-import { WA_VERSION } from 'zapo-js'
+import { WA_VERSION } from 'alya-js'
 import {
     getWaBrowserDisplayName,
     resolveWaDeviceIdentity,
     type WaDeviceIdentityOptions
-} from 'zapo-js/protocol'
+} from 'alya-js/protocol'
 
 import { resolveWamEnumValue } from './registry.js'
 import type { WamGlobalValue } from './wire/WamBatch.js'

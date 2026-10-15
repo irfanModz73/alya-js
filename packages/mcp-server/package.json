@@ -1,7 +1,7 @@
 {
-    "name": "@zapo-js/mcp-server",
+    "name": "@alya-js/mcp-server",
     "version": "1.2.0",
-    "description": "MCP server exposing zapo-js WaClient as dynamic tools for end-to-end testing",
+    "description": "MCP server exposing alya-js WaClient as dynamic tools for end-to-end testing",
     "license": "MIT",
     "author": "vinikjkkj <contact@vinicius.email> (https://github.com/vinikjkkj)",
     "repository": {
@@ -38,18 +38,18 @@
     },
     "dependencies": {
         "@modelcontextprotocol/sdk": "^1.29.0",
-        "@zapo-js/media-utils": "^1.0.0",
-        "@zapo-js/store-sqlite": "^1.1.0",
-        "@zapo-js/wam": "^0.1.0",
+        "@alya-js/media-utils": "^1.0.0",
+        "@alya-js/store-sqlite": "^1.1.0",
+        "@alya-js/wam": "^0.1.0",
         "better-sqlite3": "^12.6.2"
     },
     "peerDependencies": {
-        "zapo-js": "^1.0.0"
+        "alya-js": "^1.0.0"
     },
     "devDependencies": {
-        "@zapo-js/fake-server": "file:../fake-server",
+        "@alya-js/fake-server": "file:../fake-server",
         "cross-env": "^7.0.3",
-        "zapo-js": "file:../.."
+        "alya-js": "file:../.."
     },
     "engines": {
         "node": ">=20.9.0"

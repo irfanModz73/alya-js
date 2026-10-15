@@ -1,5 +1,5 @@
 /**
- * End-to-end retry bench driven through @zapo-js/fake-server.
+ * End-to-end retry bench driven through @alya-js/fake-server.
  *
  * Exercises the full retry round-trip in BOTH directions, validated
  * against `WAWebRetryRequestParser` from the WhatsApp Web bundle.
@@ -46,7 +46,7 @@
 
 import assert from 'node:assert/strict'
 
-import type { WaClient, WaClientEventMap } from 'zapo-js'
+import type { WaClient, WaClientEventMap } from 'alya-js'
 
 import type { FakePeer } from '../src/api/FakePeer'
 import type { FakeWaServer, WaFakeConnectionPipeline } from '../src/api/FakeWaServer'
@@ -546,7 +546,7 @@ async function main(): Promise<void> {
     const backendName = process.env.ZAPO_BENCH_STORE ?? 'memory'
     const separate = argSet.has('--separate-process')
 
-    console.log('zapo-js retry bench')
+    console.log('alya-js retry bench')
     console.log('───────────────────')
     console.log(`  messages/scenario : ${config.messages}`)
     console.log(`  scenarios         : ${[...config.scenarios].join(', ')}`)

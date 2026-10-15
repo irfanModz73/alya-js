@@ -1,7 +1,7 @@
 {
-    "name": "@zapo-js/store-postgres",
+    "name": "@alya-js/store-postgres",
     "version": "1.2.0",
-    "description": "PostgreSQL store provider for zapo-js",
+    "description": "PostgreSQL store provider for alya-js",
     "license": "MIT",
     "author": "vinikjkkj <contact@vinicius.email> (https://github.com/vinikjkkj)",
     "repository": {
@@ -32,13 +32,13 @@
         "test": "node --import tsx --test \"src/**/__tests__/**/*.test.ts\""
     },
     "peerDependencies": {
-        "zapo-js": "^1.7.0",
+        "alya-js": "^1.7.0",
         "pg": ">=8.0.0"
     },
     "devDependencies": {
         "@types/pg": "^8.11.0",
         "pg": "^8.14.1",
-        "zapo-js": "file:../.."
+        "alya-js": "file:../.."
     },
     "engines": {
         "node": ">=20.9.0"

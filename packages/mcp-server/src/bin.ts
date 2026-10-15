@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { toError } from 'zapo-js/util'
+import { toError } from 'alya-js/util'
 
 import { runMcpServer } from './server'
 

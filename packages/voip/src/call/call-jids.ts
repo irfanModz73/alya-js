@@ -1,7 +1,7 @@
-import type { Logger } from 'zapo-js'
-import { normalizeDeviceJid, toUserJid } from 'zapo-js/protocol'
-import { type BinaryNode, getNodeChildrenByTag } from 'zapo-js/transport'
-import { toError } from 'zapo-js/util'
+import type { Logger } from 'alya-js'
+import { normalizeDeviceJid, toUserJid } from 'alya-js/protocol'
+import { type BinaryNode, getNodeChildrenByTag } from 'alya-js/transport'
+import { toError } from 'alya-js/util'
 
 import type { WaVoipDeps } from '../types.js'
 

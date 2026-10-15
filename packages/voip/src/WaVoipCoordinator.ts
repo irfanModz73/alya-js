@@ -1,11 +1,11 @@
-import { type Logger, type LogLevel, type WaClientPluginContext } from 'zapo-js'
-import { WA_MESSAGE_TAGS } from 'zapo-js/protocol'
+import { type Logger, type LogLevel, type WaClientPluginContext } from 'alya-js'
+import { WA_MESSAGE_TAGS } from 'alya-js/protocol'
 
 import type {
     MLowRedOptions,
     WaCallMediaEventMessage,
     WaCallMediaMessage
-} from '@zapo-js/voip-media'
+} from '@alya-js/voip-media'
 
 import type { CallInfo } from './call/call-state.js'
 import { WaCallManager } from './call/WaCallManager.js'
@@ -101,7 +101,7 @@ export class WaVoipCoordinator {
 
     constructor(ctx: WaClientPluginContext, options: WaVoipCoordinatorOptions = {}) {
         this.deps = ctx.deps
-        this.logger = ctx.logger.child({ scope: '@zapo-js/voip' }, { level: options.logLevel })
+        this.logger = ctx.logger.child({ scope: '@alya-js/voip' }, { level: options.logLevel })
         this.manager = new WaCallManager({
             deps: ctx.deps,
             stores: ctx.stores,

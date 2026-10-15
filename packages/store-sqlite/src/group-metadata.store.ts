@@ -1,5 +1,5 @@
-import type { WaGroupMetadataSnapshot, WaGroupMetadataStore } from 'zapo-js/store'
-import { asNumber, asString } from 'zapo-js/util'
+import type { WaGroupMetadataSnapshot, WaGroupMetadataStore } from 'alya-js/store'
+import { asNumber, asString } from 'alya-js/util'
 
 import { BaseSqliteStore } from './BaseSqliteStore'
 import type { WaSqliteStorageOptions } from './types'

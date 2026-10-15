@@ -1,9 +1,9 @@
 import assert from 'node:assert/strict'
 import { test } from 'node:test'
 
-import type { BinaryNode } from 'zapo-js/transport'
+import type { BinaryNode } from 'alya-js/transport'
 
-import type { WaCallMediaPlan } from '@zapo-js/voip-media'
+import type { WaCallMediaPlan } from '@alya-js/voip-media'
 
 import { derivePerJidSrtpKey } from '../../crypto/encryption.js'
 import { generateSecureSsrc, WA_SSRC_SLOT, WA_VIDEO_CALL_SSRC_SLOTS } from '../../crypto/ssrc.js'

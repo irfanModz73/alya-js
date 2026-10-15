@@ -1,5 +1,5 @@
-import { type SignalAddress, toSignalAddressParts } from 'zapo-js/signal'
-import type { WaIdentityStore } from 'zapo-js/store'
+import { type SignalAddress, toSignalAddressParts } from 'alya-js/signal'
+import type { WaIdentityStore } from 'alya-js/store'
 
 import { BaseRedisStore } from './BaseRedisStore'
 import { deleteKeysChunked, scanKeys, toRedisBuffer } from './helpers'

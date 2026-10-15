@@ -1,7 +1,7 @@
 {
-    "name": "@zapo-js/voip-media",
+    "name": "@alya-js/voip-media",
     "version": "0.3.0",
-    "description": "WhatsApp call media plane for zapo-js – relay transport, STUN, SRTP, RTP/RTCP and the MLow codec, with a Node host and a browser host",
+    "description": "WhatsApp call media plane for alya-js – relay transport, STUN, SRTP, RTP/RTCP and the MLow codec, with a Node host and a browser host",
     "license": "MIT",
     "author": "vinikjkkj <contact@vinicius.email> (https://github.com/vinikjkkj)",
     "repository": {

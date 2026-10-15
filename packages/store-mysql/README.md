@@ -1,13 +1,13 @@
-# @zapo-js/store-mysql
+# @alya-js/store-mysql
 
-MySQL / MariaDB-backed persistent store for [`zapo-js`](https://www.npmjs.com/package/zapo-js). Built on [`mysql2/promise`](https://github.com/sidorares/node-mysql2). Suitable when your stack standardizes on MySQL/MariaDB and you want session state to ride the same backup, replication and IAM as the rest of your data.
+MySQL / MariaDB-backed persistent store for [`alya-js`](https://www.npmjs.com/package/alya-js). Built on [`mysql2/promise`](https://github.com/sidorares/node-mysql2). Suitable when your stack standardizes on MySQL/MariaDB and you want session state to ride the same backup, replication and IAM as the rest of your data.
 
 Migrations run lazily on first touch per domain. Cache domains need a background poller (`startCleanup`) because MySQL has no native TTL.
 
 ## Install
 
 ```bash
-npm install @zapo-js/store-mysql mysql2
+npm install @alya-js/store-mysql mysql2
 ```
 
 `mysql2` is a peer dependency.
@@ -15,8 +15,8 @@ npm install @zapo-js/store-mysql mysql2
 ## Quick start
 
 ```ts
-import { createStore, WaClient } from 'zapo-js'
-import { createMysqlStore } from '@zapo-js/store-mysql'
+import { createStore, WaClient } from 'alya-js'
+import { createMysqlStore } from '@alya-js/store-mysql'
 
 const result = createMysqlStore({
     pool: {
@@ -72,4 +72,4 @@ The result exposes `{ pool, stores, caches, startCleanup, destroy }`. Call `star
 - The schema uses `utf8mb4` and `BLOB` columns; row sizes are small except for `messages.body_proto` (variable-size protobuf).
 - Migrations are idempotent and serialized via `INFORMATION_SCHEMA` lookups, safe to run concurrently from multiple processes.
 
-See the main [`zapo-js`](../../README.md) docs for the full store contract.
+See the main [`alya-js`](../../README.md) docs for the full store contract.

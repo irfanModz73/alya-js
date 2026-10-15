@@ -1,12 +1,12 @@
-import type { WaClientPluginContext } from 'zapo-js'
-import type { BinaryNode } from 'zapo-js/transport'
+import type { WaClientPluginContext } from 'alya-js'
+import type { BinaryNode } from 'alya-js/transport'
 
 import type {
     InboundVideoFrame,
     InboundVideoRtpPacket,
     WaCallMediaMessage,
     WaCallReaction
-} from '@zapo-js/voip-media'
+} from '@alya-js/voip-media'
 
 import type { CallInfo } from './call/call-state.js'
 import type { WaGroupCompositionDiff } from './call/group-participants.js'

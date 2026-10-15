@@ -3,7 +3,7 @@ import {
     parseSignalAddressFromJid,
     toUserJid,
     WA_DEFAULTS
-} from 'zapo-js/protocol'
+} from 'alya-js/protocol'
 
 /**
  * A device jid with its `:device`, bare meaning the primary: the form SSRCs and SRTP keys derive

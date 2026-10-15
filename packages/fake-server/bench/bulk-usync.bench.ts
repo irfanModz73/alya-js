@@ -166,7 +166,7 @@ async function main(): Promise<void> {
     const backendName = process.env.ZAPO_BENCH_STORE ?? 'memory'
     const separate = argSet.has('--separate-process')
 
-    console.log('zapo-js bulk-usync bench')
+    console.log('alya-js bulk-usync bench')
     console.log('────────────────────────')
     console.log(`  member counts  : ${sizes.join(', ')}`)
     console.log(`  devices/member : ${devicesPerMember}`)

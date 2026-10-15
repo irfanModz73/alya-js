@@ -1,7 +1,7 @@
 /**
  * Layer 1 – crypto primitives wrapper.
  *
- * Re-exports bit-exact cryptographic primitives from zapo-js. No protocol
+ * Re-exports bit-exact cryptographic primitives from alya-js. No protocol
  * interpretation, so reusing them does not create a test-vs-impl tautology.
  */
 
@@ -26,6 +26,6 @@ export {
     X25519,
     xeddsaSign,
     xeddsaVerify
-} from 'zapo-js/crypto'
-export type { SignalKeyPair } from 'zapo-js/crypto'
-export { WaMediaCrypto } from 'zapo-js/media'
+} from 'alya-js/crypto'
+export type { SignalKeyPair } from 'alya-js/crypto'
+export { WaMediaCrypto } from 'alya-js/media'

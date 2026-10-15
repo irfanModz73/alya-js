@@ -6,7 +6,7 @@ import {
     toBytesView,
     uint8Equal,
     uint8TimingSafeEqual
-} from 'zapo-js/util'
+} from 'alya-js/util'
 
 function toBytes(value: unknown): Uint8Array {
     if (value instanceof Uint8Array) return value

@@ -225,7 +225,7 @@ export function registerDefaultIqHandlers(router: WaFakeIqRouter, deps: IqHandle
     })
 
     // Baileys-family and whatsmeow clients block on this query before
-    // reporting the connection as open; zapo-js uses <digest> instead.
+    // reporting the connection as open; alya-js uses <digest> instead.
     router.register({
         label: 'prekey-count',
         matcher: { xmlns: 'encrypt', type: 'get', childTag: 'count' },
